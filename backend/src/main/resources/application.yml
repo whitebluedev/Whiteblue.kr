@@ -1,0 +1,15 @@
+server:
+  port: 8000
+spring:
+  profiles:
+    include: jdbc, oAuth
+  jpa:
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+    database: mysql
+    show-sql: true
+
