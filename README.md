@@ -19,9 +19,8 @@
 * **Spring Boot**
 * **Spring Data JPA**
 * **Spring Security**
+* **OAuth**
 * **QueryDSL**
-* **JSON Web Token**
 
 ### ERD
-![whiteblue](https://user-images.githubusercontent.com/82157140/204035542-5f28c9a3-5637-415f-9d54-236f7e79ffbe.jpg)
-
+![whiteblue](https://user-images.githubusercontent.com/82157140/211191362-53627cd9-1b39-4b6b-a369-f91bc6d170ec.png)
