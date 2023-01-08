@@ -7,6 +7,7 @@ import DnsIcon from '@mui/icons-material/Dns'
 import Link from 'next/link'
 import { Alert, Snackbar, useMediaQuery } from '@mui/material'
 import { useEffect, useState } from 'react'
+import { useSelector } from 'react-redux'
 
 const Body = styled(motion.div)`
   width: 100%;
@@ -137,9 +138,16 @@ const Footer = styled(motion.div)`
 `
 
 const Index: NextPage = () => {
-  const [open, setOpen] = useState(false)
-  const isMobile = useMediaQuery('(max-width:600px)')
+  const isLogin = useSelector((store: Store) => {
+    return store.user.login
+  })
+  const profile = useSelector((store: Store) => {
+    return store.user.profile
+  })
 
+  const [open, setOpen] = useState(false)
+
+  const isMobile = useMediaQuery('(max-width:600px)')
   const logoAnimation = useAnimation()
 
   useEffect(() => {
@@ -409,14 +417,16 @@ const Index: NextPage = () => {
           severity="info"
           sx={{ width: '100%', fontFamily: 'nanumSquare' }}
         >
-          현재 개발 중인 웹 서비스입니다.
+          {isLogin && profile ? (
+            <>
+              현재 <b>{profile.username}</b>님으로 접속 중입니다.
+            </>
+          ) : (
+            <>
+              현재 <b>로그아웃</b> 상태입니다.
+            </>
+          )}
           <br />
-          <Link
-            href="https://github.com/Security-Whiteblue/Whiteblue.kr"
-            target="_blank"
-          >
-            GitHub
-          </Link>
         </Alert>
       </Snackbar>
     </Body>

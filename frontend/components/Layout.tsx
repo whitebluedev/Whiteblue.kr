@@ -1,14 +1,23 @@
 import { SpeedDial, SpeedDialAction, SpeedDialIcon } from '@mui/material'
-import { FunctionComponent, ReactNode, useCallback, useState } from 'react'
+import {
+  FunctionComponent,
+  ReactNode,
+  useCallback,
+  useEffect,
+  useState,
+} from 'react'
 import CreateIcon from '@mui/icons-material/Create'
-import AssignmentIndIcon from '@mui/icons-material/AssignmentInd'
+import DescriptionIcon from '@mui/icons-material/Description'
+import PersonIcon from '@mui/icons-material/Person'
 import LoginIcon from '@mui/icons-material/Login'
 import LogoutIcon from '@mui/icons-material/Logout'
 import HomeIcon from '@mui/icons-material/Home'
 import Router from 'next/router'
-import { Alert, Snackbar } from '@mui/material'
 import { useDispatch, useSelector } from 'react-redux'
-import { setLogin } from 'redux/reducers/userReducer'
+import { Profile, setLogin, setProfile } from 'redux/reducers/userReducer'
+import axios, { AxiosError, AxiosResponse } from 'axios'
+import Snackbar from '@mui/material/Snackbar'
+import Alert from '@mui/material/Alert'
 
 const Layout: FunctionComponent<{ children: ReactNode }> = ({ children }) => {
   const isLogin = useSelector((store: Store) => {
@@ -18,9 +27,37 @@ const Layout: FunctionComponent<{ children: ReactNode }> = ({ children }) => {
 
   const [logout, setLogout] = useState(false)
 
+  useEffect(() => {
+    axios
+      .get('http://localhost:8000/user/auth')
+      .then((response: AxiosResponse<Profile | undefined>) => {
+        if (response.data) {
+          dispatch(setLogin(true))
+          dispatch(setProfile(response.data))
+        } else {
+          dispatch(setLogin(false))
+          dispatch(setProfile(undefined))
+        }
+      })
+      .catch((error: AxiosError) => {
+        console.log(error)
+      })
+  })
+
   const logoutHandler = useCallback(async () => {
-    dispatch(setLogin(false))
-    setLogout(true)
+    axios
+      .get('http://localhost:8000/logout')
+      .then(() => {
+        dispatch(setLogin(false))
+        if (Router.asPath != '/') {
+          Router.push('/')
+        } else {
+          setLogout(true)
+        }
+      })
+      .catch((error) => {
+        console.log(error)
+      })
   }, [dispatch])
 
   return (
@@ -47,9 +84,13 @@ const Layout: FunctionComponent<{ children: ReactNode }> = ({ children }) => {
             onClick={logoutHandler}
           />
         )}
+
+        {isLogin && (
+          <SpeedDialAction icon={<PersonIcon />} tooltipTitle="내 정보" />
+        )}
         {Router.asPath != '/application' && (
           <SpeedDialAction
-            icon={<AssignmentIndIcon />}
+            icon={<DescriptionIcon />}
             tooltipTitle="동아리 신청"
             onClick={() => {
               Router.push('/application')
@@ -80,7 +121,7 @@ const Layout: FunctionComponent<{ children: ReactNode }> = ({ children }) => {
           severity="success"
           sx={{ width: '100%', fontFamily: 'nanumSquare' }}
         >
-          정상적으로 로그아웃 되었습니다.
+          성공적으로 로그아웃 처리되었습니다.
         </Alert>
       </Snackbar>
     </>

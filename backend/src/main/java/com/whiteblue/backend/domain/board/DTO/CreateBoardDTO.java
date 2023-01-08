@@ -1,7 +1,7 @@
 package com.whiteblue.backend.domain.board.DTO;
 
-import com.whiteblue.backend.domain.board.Board;
-import com.whiteblue.backend.domain.user.User;
+import com.whiteblue.backend.domain.board.entity.Board;
+import com.whiteblue.backend.domain.user.entity.User;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Data;

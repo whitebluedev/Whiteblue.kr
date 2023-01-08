@@ -1,10 +1,7 @@
-package com.whiteblue.backend.domain.board;
+package com.whiteblue.backend.domain.board.entity;
 
-import com.whiteblue.backend.domain.user.User;
-import lombok.AccessLevel;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import com.whiteblue.backend.domain.user.entity.User;
+import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -15,6 +12,7 @@ import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 
 @Getter
+@Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @EntityListeners(AuditingEntityListener.class)
 @Entity
