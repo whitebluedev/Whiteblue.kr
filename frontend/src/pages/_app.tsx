@@ -23,26 +23,10 @@ const App: NextPage<AppProps> = ({ Component, pageProps }) => {
       </Head>
       <Provider store={store}>
         <PersistGate persistor={persistor}>
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={router.asPath}
-              className="mui-fixed"
-              initial={{ opacity: 0 }}
-              animate={{
-                opacity: 1,
-                transition: { duration: 0.3 },
-              }}
-              exit={{
-                opacity: 0,
-                transition: { duration: 0.3 },
-              }}
-            >
-              <Layout>
-                <Global styles={global} />
-                <Component {...pageProps} />
-              </Layout>
-            </motion.div>
-          </AnimatePresence>
+          <Layout>
+            <Global styles={global} />
+            <Component {...pageProps} />
+          </Layout>
         </PersistGate>
       </Provider>
     </>

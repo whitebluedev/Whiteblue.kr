@@ -98,7 +98,7 @@ const Application = () => {
               transition: { delay: 0.3, duration: 1.5 },
             })
           } else {
-            Router.push('/signIn')
+            Router.push(process.env.LOGIN_URL as string)
           }
         }}
       >

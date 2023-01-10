@@ -7,7 +7,7 @@ import DnsIcon from '@mui/icons-material/Dns'
 import Link from 'next/link'
 import { Alert, Snackbar, useMediaQuery } from '@mui/material'
 import { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
+import { shallowEqual, useSelector } from 'react-redux'
 
 const Body = styled(motion.div)`
   width: 100%;
@@ -143,7 +143,7 @@ const Index: NextPage = () => {
   })
   const profile = useSelector((store: Store) => {
     return store.user.profile
-  })
+  }, shallowEqual)
 
   const [open, setOpen] = useState(false)
 
