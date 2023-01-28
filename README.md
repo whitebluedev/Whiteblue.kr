@@ -11,6 +11,9 @@
 * **Next.js**
 * **Redux(+ Toolkit, Wrapper, Persist)**
 
+### Src Tree
+<img width="50%" alt="src tree" src="https://user-images.githubusercontent.com/64190056/215238941-d0c0f512-af97-4f3b-9086-b97d53f6be75.png">
+
 ## Backend
 ### Developer
 * **정상윤**
