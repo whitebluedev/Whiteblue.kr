@@ -4,16 +4,19 @@ import { NextPage } from 'next'
 import Image from 'next/image'
 import CodeIcon from '@mui/icons-material/Code'
 import DnsIcon from '@mui/icons-material/Dns'
-import Link from 'next/link'
 import { Alert, Snackbar, useMediaQuery } from '@mui/material'
 import { useEffect, useState } from 'react'
 import { shallowEqual, useSelector } from 'react-redux'
+
+
+import Nav from 'src/components/Nav/Nav'
+import Footer from 'src/components/Footer'
+
 
 const Body = styled(motion.div)`
   width: 100%;
   display: flex;
   flex-direction: column;
-  background-color: #292929;
 `
 
 const Title = styled(motion.div)`
@@ -124,25 +127,23 @@ const Section = styled(motion.div)`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #292929;
 `
 
-const Footer = styled(motion.div)`
+const FooterWraaper = styled(motion.div)`
   height: 6rem;
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  background-color: #ffffff;
 `
 
 const Index: NextPage = () => {
   const isLogin = useSelector((store: Store) => {
     return store.user.login
   })
-  const profile = useSelector((store: Store) => {
-    return store.user.profile
+  const account = useSelector((store: Store) => {
+    return store.user.account
   }, shallowEqual)
 
   const [open, setOpen] = useState(false)
@@ -160,8 +161,10 @@ const Index: NextPage = () => {
     })
   }, [logoAnimation])
 
-  return (
+  return (    
     <Body>
+      <Nav />
+
       <Title>
         <motion.div
           className="image"
@@ -374,33 +377,8 @@ const Index: NextPage = () => {
         </motion.div>
       </Intro>
       <Section></Section>
-      <Footer>
-        <motion.div
-          initial={{ filter: 'blur(2px)' }}
-          whileInView={{
-            filter: 'blur(0px)',
-            transition: { duration: 1 },
-          }}
-          viewport={{ once: true }}
-        >
-          <motion.div
-            style={{
-              fontWeight: 800,
-              marginBottom: '0.5rem',
-              fontSize: '0.8rem',
-            }}
-          >
-            Copyright © Whiteblue 2023. All rights reserved.
-          </motion.div>
-          <Link
-            href="https://github.com/Security-Whiteblue/Whiteblue.kr"
-            style={{ fontWeight: 700, color: 'black', fontSize: '0.7rem' }}
-            target="_blank"
-          >
-            GitHub
-          </Link>
-        </motion.div>
-      </Footer>
+
+      <Footer />
 
       {/* Interaction */}
       <Snackbar
@@ -415,11 +393,11 @@ const Index: NextPage = () => {
             setOpen(false)
           }}
           severity="info"
-          sx={{ width: '100%', fontFamily: 'nanumSquare' }}
+          sx={{ width: '100%' }}
         >
-          {isLogin && profile ? (
+          {isLogin && account ? (
             <>
-              현재 <b>{profile.username}</b>님으로 접속 중입니다.
+              현재 <b>{account.userID}</b>님으로 접속 중입니다.
             </>
           ) : (
             <>

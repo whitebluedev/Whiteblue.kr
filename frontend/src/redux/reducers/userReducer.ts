@@ -1,13 +1,13 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
-interface Profile {
-  email: string
-  username: string
+interface Account {
+  userID: string
+  userPWD: string
 }
 
 interface User {
   login: boolean
-  profile?: Profile
+  account?: Account
 }
 
 const initialState: User = {
@@ -21,12 +21,14 @@ const userSlice = createSlice({
     setLogin: (state, action: PayloadAction<boolean>) => {
       state.login = action.payload
     },
-    setProfile: (state, action: PayloadAction<Profile | undefined>) => {
-      state.profile = action.payload
+    setAccount: (state, action: PayloadAction<Account | undefined>) => {
+      state.account = action.payload
     },
   },
 })
 
-export const { setLogin, setProfile } = userSlice.actions
-export type { User, Profile }
+
+
+export const { setLogin, setAccount } = userSlice.actions
+export type { User, Account }
 export default userSlice.reducer
