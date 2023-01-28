@@ -23,7 +23,6 @@ const store = configureStore({
 })
 
 const persistor = persistStore(store)
-
 const wrapper = createWrapper(() => {
   return store
 })
@@ -31,5 +30,5 @@ const wrapper = createWrapper(() => {
 declare global {
   type Store = ReturnType<typeof store.getState>
 }
-export { wrapper, persistor }
+export { wrapper, persistor}
 export default store

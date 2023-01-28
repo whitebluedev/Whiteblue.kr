@@ -2,9 +2,14 @@ import { css } from '@emotion/react'
 
 const global = css`
   @import url('https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css');
+  @font-face {
+    font-family: 'GmarketSans';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: 800;
+    font-style: normal;
+  }
   * {
     margin: 0;
-    font-family: 'NanumSquare';
   }
   html,
   body,

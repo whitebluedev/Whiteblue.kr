@@ -5,11 +5,11 @@ class CustomDocument extends Document {
     return (
       <Html>
         <Head>
-          <link rel="icon" href="/image/favicon.ico" />
+          <link rel="icon" href="/image/favicon.png" />
           <meta charSet="utf-8" />
-          <meta name="author" content="earlgrey02" />
-          <meta name="keywords" content="Whiteblue" />
-          <meta name="description" content="SYU Security Team" />
+          <meta name="author" content="wayandway" />
+          <meta name="keywords" content="WHITEBLUE" />
+          <meta name="description" content="WHITEBLUE Website" />
         </Head>
         <body>
           <Main />
