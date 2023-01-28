@@ -18,10 +18,9 @@ import {
 
 const Body = styled(motion.div)`
   width: 100%;
-  position: ; absolute
+  position: absolute;
   padding: 0.3% 0;
-  backdrop-filter: saturate(100%) blur(50px);
-
+  background-color: #fff;
 `
 const LogoWrapper = styled(motion.div)`
   margin-left: 16%;
