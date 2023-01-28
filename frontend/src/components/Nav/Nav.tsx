@@ -10,6 +10,8 @@ import Image from 'next/image'
 import AccountMenu from './AccountMenu';
 // MUI Library
 import {
+  AppBar,
+  CssBaseline,
   Toolbar,
   Typography,
   useMediaQuery,
@@ -20,8 +22,7 @@ const Body = styled(motion.div)`
   width: 100%;
   position: fixed;
   padding: 0.3% 0;
-  backdrop-filter: saturate(100%) blur(50px);
-
+  background-color: #fff;
 `
 const LogoWrapper = styled(motion.div)`
   margin-left: 16%;
@@ -49,26 +50,31 @@ const Nav: FunctionComponent = () => {
   const isMobile = useMediaQuery('(max-width:600px)');
 
   return (
-    <Body>
-      <Toolbar>
-        <LogoWrapper>
-          <Image
-            src='/image/mainLogo.png'
-            width={isMobile ? 90 : 210}
-            height={isMobile ? 20 : 45}
-            alt='mainLogo'
-            onClick={() => {
-              Router.push('/')
-            }}
-          />
+    <>
+      <CssBaseline />
+      <Body>
+        <AppBar sx={{ bgcolor: "inherit" }}>
+          <Toolbar>
+            <LogoWrapper>
+              <Image
+                src='/image/mainLogo.png'
+                width={isMobile ? 90 : 210}
+                height={isMobile ? 20 : 45}
+                alt='mainLogo'
+                onClick={() => {
+                  Router.push('/')
+                }}
+              />
+            </LogoWrapper>
+            <Typography sx={{ flexGrow: 1 }} />
+            <MenuWrapper>
+              <AccountMenu />
+            </MenuWrapper>
+          </Toolbar>
+        </ AppBar>
+      </Body>
+    </>
 
-        </LogoWrapper>
-        <Typography sx={{ flexGrow: 1 }} />
-        <MenuWrapper>
-          <AccountMenu />
-        </MenuWrapper>
-      </Toolbar>
-    </Body>
   )
 }
 
