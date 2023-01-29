@@ -1,7 +1,6 @@
 package com.whiteblue.backend.domain.user.controller;
 
-import com.whiteblue.backend.domain.user.entity.OAuthUser;
-import com.whiteblue.backend.domain.user.service.UserService;
+import com.whiteblue.backend.domain.user.entity.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,10 +11,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/user")
 @RestController
 public class UserController {
-    private final UserService userService;
-
     @GetMapping("/auth")
-    public OAuthUser authenticate(@AuthenticationPrincipal OAuthUser oAuthUser) {
-        return oAuthUser;
+    public User authenticate(@AuthenticationPrincipal User user) {
+        return user;
     }
 }

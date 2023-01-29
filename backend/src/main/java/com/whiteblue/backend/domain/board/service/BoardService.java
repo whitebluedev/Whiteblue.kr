@@ -1,6 +1,5 @@
 package com.whiteblue.backend.domain.board.service;
 
-import com.whiteblue.backend.domain.board.repository.BoardRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -9,5 +8,4 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 @Service
 public class BoardService {
-    private final BoardRepository boardRepository;
 }

@@ -1,6 +1,6 @@
 package com.whiteblue.backend.config;
 
-import com.whiteblue.backend.domain.user.service.OAuthUserService;
+import com.whiteblue.backend.domain.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -15,7 +15,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @EnableWebSecurity
 @Configuration
 public class SecurityConfig {
-    private final OAuthUserService oAuthUserService;
+    private final UserService UserService;
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -34,7 +34,7 @@ public class SecurityConfig {
             .oauth2Login(oAuth2LoginConfigurer -> {
                 oAuth2LoginConfigurer.defaultSuccessUrl("http://localhost:3000")
                                      .userInfoEndpoint()
-                                     .userService(oAuthUserService);
+                                     .userService(UserService);
             });
 
         return http.build();

@@ -20,6 +20,14 @@ public class Application {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    private String name;
+
+    private String phoneNumber;
+
+    private String major;
+
+    private String introduction;
+
     @CreatedDate
     private LocalDateTime createdDate;
 
@@ -31,7 +39,12 @@ public class Application {
     private User writer;
 
     @Builder
-    public Application(User writer) {
+    public Application(Integer id, String name, String phoneNumber, String major, String introduction, User writer) {
+        this.id = id;
+        this.name = name;
+        this.phoneNumber = phoneNumber;
+        this.major = major;
+        this.introduction = introduction;
         this.writer = writer;
     }
 }
