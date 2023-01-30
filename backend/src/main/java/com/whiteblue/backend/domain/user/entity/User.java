@@ -1,7 +1,6 @@
 package com.whiteblue.backend.domain.user.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.whiteblue.backend.domain.application.entity.Application;
 import com.whiteblue.backend.domain.board.entity.Board;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
@@ -17,7 +16,7 @@ import java.util.Map;
 @Getter
 @Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@JsonIgnoreProperties({"attributes", "authorities", "name"})
+@JsonIgnoreProperties({"attributes", "authorities", "name", "board"})
 @Entity
 public class User implements OAuth2User {
     @Id
@@ -34,9 +33,6 @@ public class User implements OAuth2User {
 
     @OneToMany(mappedBy = "writer", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
     private final List<Board> board = new ArrayList<>();
-
-    @OneToOne(mappedBy = "writer", cascade = CascadeType.REMOVE)
-    private Application application;
 
     @Transient
     private Map<String, Object> attributes;

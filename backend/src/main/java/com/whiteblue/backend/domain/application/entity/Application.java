@@ -7,7 +7,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 @Getter
@@ -34,7 +34,7 @@ public class Application {
     @LastModifiedDate
     private LocalDateTime modifiedDate;
 
-    @NotBlank
+    @NotNull
     @OneToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
     private User writer;
 

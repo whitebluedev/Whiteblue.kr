@@ -18,18 +18,20 @@ public class ApplicationService {
 
     public ResponseApplicationDTO findByUser(User user) {
         Application application = applicationRepository.findByWriter(user)
-                                                       .orElse(Application.builder()
-                                                                          .name("")
-                                                                          .phoneNumber("")
-                                                                          .major("")
-                                                                          .introduction("")
-                                                                          .build());
+                                                       .orElseGet(() -> applicationRepository.save(Application.builder()
+                                                                                                              .name("")
+                                                                                                              .phoneNumber("")
+                                                                                                              .major("")
+                                                                                                              .introduction("")
+                                                                                                              .writer(user)
+                                                                                                              .build()));
 
         return ResponseApplicationDTO.builder()
                                      .name(application.getName())
                                      .phoneNumber(application.getPhoneNumber())
                                      .major(application.getMajor())
                                      .introduction(application.getIntroduction())
+                                     .writer(user)
                                      .build();
     }
 
@@ -41,23 +43,19 @@ public class ApplicationService {
 
         applicationRepository.findByWriter(user)
                              .ifPresentOrElse(application -> {
-                                                  application.setName(name);
-                                                  application.setPhoneNumber(phoneNumber);
-                                                  application.setMajor(major);
-                                                  application.setIntroduction(introduction);
-                                                  applicationRepository.save(application);
-                                              },
-                                              () -> applicationRepository.save(Application.builder()
-                                                                                          .name(name)
-                                                                                          .phoneNumber(phoneNumber)
-                                                                                          .major(major)
-                                                                                          .introduction(introduction)
-                                                                                          .build()));
+                                 application.setName(name);
+                                 application.setPhoneNumber(phoneNumber);
+                                 application.setMajor(major);
+                                 application.setIntroduction(introduction);
+                                 applicationRepository.save(application);
+                             }, () -> applicationRepository.save(saveApplicationDTO.toEntity()));
+
         return ResponseApplicationDTO.builder()
                                      .name(name)
                                      .phoneNumber(phoneNumber)
                                      .major(major)
                                      .introduction(introduction)
+                                     .writer(user)
                                      .build();
     }
 

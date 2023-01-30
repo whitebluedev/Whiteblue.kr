@@ -11,7 +11,7 @@ import java.util.Optional;
 @Repository
 public interface UserRepository extends JpaRepository<User, Integer> {
     @Override
-    @Query("select distinct u from User u join fetch u.board")
+    @Query("select distinct u from User u left join fetch u.board")
     List<User> findAll();
 
     Optional<User> findByEmail(String email);

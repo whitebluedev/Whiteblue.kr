@@ -4,17 +4,14 @@ import type { AppProps } from 'next/app'
 import { NextPage } from 'next'
 import Head from 'next/head'
 // Redux & axios
-import { Provider } from 'react-redux'
+import { Provider, useDispatch } from 'react-redux'
 import { PersistGate } from 'redux-persist/integration/react'
-import store, { persistor, wrapper} from '../redux/store'
-import axios from 'axios'
+import store, { persistor, wrapper } from '../redux/store'
+import axios, { AxiosError, AxiosResponse } from 'axios'
 // MUI Library
 // Custom Library
 import Layout from 'src/components/Layout'
 import global from 'public/css/global'
-
-
-
 const App: NextPage<AppProps> = ({ Component, pageProps }) => {
   axios.defaults.withCredentials = true
 

@@ -31,6 +31,7 @@ public class UserService extends DefaultOAuth2UserService {
                           userRepository.save(u);
                       }, () -> userRepository.save(user));
 
-        return user;
+        return userRepository.findByEmail(email)
+                             .orElseThrow();
     }
 }

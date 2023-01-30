@@ -1,4 +1,4 @@
-import * as React from 'react';
+import * as React from 'react'
 import styled from '@emotion/styled'
 import { motion } from 'framer-motion'
 // React Library
@@ -7,7 +7,7 @@ import { FunctionComponent } from 'react'
 // Custom Library
 import Router from 'next/router'
 import Image from 'next/image'
-import AccountMenu from './AccountMenu';
+import AccountMenu from './AccountMenu'
 // MUI Library
 import {
   AppBar,
@@ -16,7 +16,6 @@ import {
   Typography,
   useMediaQuery,
 } from '@mui/material'
-
 
 const Body = styled(motion.div)`
   width: 100%;
@@ -43,24 +42,20 @@ const MenuWrapper = styled(motion.div)`
 `
 
 const Nav: FunctionComponent = () => {
-  const account = useSelector((store: Store) => {
-    return store.user.account
-  }, shallowEqual)
-
-  const isMobile = useMediaQuery('(max-width:600px)');
+  const isMobile = useMediaQuery('(max-width:600px)')
 
   return (
     <>
       <CssBaseline />
       <Body>
-        <AppBar sx={{ bgcolor: "inherit" }}>
+        <AppBar sx={{ bgcolor: 'inherit' }}>
           <Toolbar>
             <LogoWrapper>
               <Image
-                src='/image/mainLogo.png'
+                src="/image/mainLogo.png"
                 width={isMobile ? 90 : 210}
                 height={isMobile ? 20 : 45}
-                alt='mainLogo'
+                alt="mainLogo"
                 onClick={() => {
                   Router.push('/')
                 }}
@@ -71,10 +66,9 @@ const Nav: FunctionComponent = () => {
               <AccountMenu />
             </MenuWrapper>
           </Toolbar>
-        </ AppBar>
+        </AppBar>
       </Body>
     </>
-
   )
 }
 

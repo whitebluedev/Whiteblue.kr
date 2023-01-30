@@ -8,6 +8,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 
@@ -34,6 +35,7 @@ public class Board {
     @LastModifiedDate
     private LocalDateTime modifiedDate;
 
+    @NotNull
     @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
     private User writer;
 

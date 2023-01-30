@@ -4,14 +4,11 @@ import { NextPage } from 'next'
 import Image from 'next/image'
 import CodeIcon from '@mui/icons-material/Code'
 import DnsIcon from '@mui/icons-material/Dns'
-import { Alert, Snackbar, useMediaQuery } from '@mui/material'
+import { useMediaQuery } from '@mui/material'
 import { useEffect, useState } from 'react'
 import { shallowEqual, useSelector } from 'react-redux'
-
-
 import Nav from 'src/components/Nav/Nav'
 import Footer from 'src/components/Footer'
-
 
 const Body = styled(motion.div)`
   width: 100%;
@@ -139,20 +136,10 @@ const FooterWraaper = styled(motion.div)`
 `
 
 const Index: NextPage = () => {
-  const isLogin = useSelector((store: Store) => {
-    return store.user.login
-  })
-  const account = useSelector((store: Store) => {
-    return store.user.account
-  }, shallowEqual)
-
-  const [open, setOpen] = useState(false)
-
   const isMobile = useMediaQuery('(max-width:600px)')
   const logoAnimation = useAnimation()
 
   useEffect(() => {
-    setOpen(true)
     logoAnimation.start({
       scale: 1,
       filter: 'blur(0px) brightness(100%)',
@@ -161,7 +148,7 @@ const Index: NextPage = () => {
     })
   }, [logoAnimation])
 
-  return (    
+  return (
     <Body>
       <Nav />
 
@@ -377,36 +364,7 @@ const Index: NextPage = () => {
         </motion.div>
       </Intro>
       <Section></Section>
-
       <Footer />
-
-      {/* Interaction */}
-      <Snackbar
-        open={open}
-        autoHideDuration={3000}
-        onClose={() => {
-          setOpen(false)
-        }}
-      >
-        <Alert
-          onClose={() => {
-            setOpen(false)
-          }}
-          severity="info"
-          sx={{ width: '100%' }}
-        >
-          {isLogin && account ? (
-            <>
-              현재 <b>{account.userID}</b>님으로 접속 중입니다.
-            </>
-          ) : (
-            <>
-              현재 <b>로그아웃</b> 상태입니다.
-            </>
-          )}
-          <br />
-        </Alert>
-      </Snackbar>
     </Body>
   )
 }

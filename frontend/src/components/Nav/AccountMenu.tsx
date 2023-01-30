@@ -1,85 +1,59 @@
-import * as React from 'react';
+import * as React from 'react'
 // React Library
-import {
-  useCallback,
-  useEffect,
-  useState,
-} from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import axios, { AxiosError, AxiosResponse } from 'axios'
 // Custom Library
 import { User, setLogin } from 'src/redux/reducers/userReducer'
 import Router from 'next/router'
 // MUI Library
-import { 
-Box,
-Menu, MenuItem,
-ListItemIcon,
-IconButton,
-Divider,
-Avatar,
-useMediaQuery,
-} from '@mui/material';
 import {
-  Settings,
-  Logout,
-} from '@mui/icons-material';
-import SendIcon from '@mui/icons-material/Send';
+  Box,
+  Menu,
+  MenuItem,
+  ListItemIcon,
+  IconButton,
+  Divider,
+  Avatar,
+  useMediaQuery,
+} from '@mui/material'
+import { Settings, Logout } from '@mui/icons-material'
+import SendIcon from '@mui/icons-material/Send'
 
 export default function AccountMenu() {
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-  const open = Boolean(anchorEl);
-  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorEl(event.currentTarget);
-  };
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-
-
-  {/* LogIn & LogOut */}
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
+  const open = Boolean(anchorEl)
   const isLogin = useSelector((store: Store) => {
     return store.user.login
   })
   const dispatch = useDispatch()
 
-  const [logout, setLogout] = useState(false)
+  const handleClick = useCallback((event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(event.currentTarget)
+  }, [])
 
-  useEffect(() => {
-    axios
-      .get('http://localhost:8000/user/auth')
-      .then((response: AxiosResponse<User | undefined>) => {
-        if (response.data) {
-          dispatch(setLogin(true))
-        } else {
-          dispatch(setLogin(false))
-        }
-      })
-      .catch((error: AxiosError) => {
-        console.log(error)
-      })
-  }, [dispatch, Router.asPath])
+  const handleClose = useCallback(() => {
+    setAnchorEl(null)
+  }, [])
 
-  const logOutHandler = useCallback(async () => {
+  const logoutHandler = useCallback(() => {
     axios
       .get('http://localhost:8000/logout')
       .then(() => {
         dispatch(setLogin(false))
-        Router.replace('/').then(() => {
-          setLogout(true)
-        })
       })
-      .catch((error) => {
+      .catch((error: AxiosError) => {
         console.log(error)
       })
   }, [dispatch])
 
-
-  const isMobile = useMediaQuery('(max-width:600px)');
+  const isMobile = useMediaQuery('(max-width:600px)')
 
   return (
     <React.Fragment>
-      <Box sx={{ display: 'inline', alignItems: 'center', textAlign: 'center' }}>
+      <Box
+        sx={{ display: 'inline', alignItems: 'center', textAlign: 'center' }}
+      >
         {/* 로그인 상태 */}
         {isLogin && (
           <>
@@ -91,7 +65,7 @@ export default function AccountMenu() {
               aria-haspopup="true"
               aria-expanded={open ? 'true' : undefined}
             >
-              <Avatar src='/image/ex.png' sx={{ width: 40, height: 40 }} />
+              <Avatar src="/image/ex.png" sx={{ width: 40, height: 40 }} />
             </IconButton>
 
             <Menu
@@ -122,10 +96,12 @@ export default function AccountMenu() {
               transformOrigin={{ horizontal: 'right', vertical: 'top' }}
               anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
             >
-              <MenuItem onClick={() => {
-                handleClose;
-                Router.push('/apply/application');
-              }}>
+              <MenuItem
+                onClick={() => {
+                  handleClose()
+                  Router.push('/apply/application')
+                }}
+              >
                 <ListItemIcon>
                   <SendIcon fontSize="small" />
                 </ListItemIcon>
@@ -133,20 +109,24 @@ export default function AccountMenu() {
               </MenuItem>
 
               <Divider />
-              <MenuItem onClick={() => {
-                handleClose;
-                Router.push('/account/profile');
-              }}>
+              <MenuItem
+                onClick={() => {
+                  handleClose()
+                  Router.push('/account/profile')
+                }}
+              >
                 <ListItemIcon>
                   <Settings fontSize="small" />
                 </ListItemIcon>
                 정보수정
               </MenuItem>
 
-              <MenuItem onClick={() => {
-                logOutHandler;
-                handleClose;
-              }}>
+              <MenuItem
+                onClick={() => {
+                  handleClose()
+                  logoutHandler()
+                }}
+              >
                 <ListItemIcon>
                   <Logout fontSize="small" />
                 </ListItemIcon>
@@ -165,14 +145,11 @@ export default function AccountMenu() {
               size="small"
               sx={{ ml: 2 }}
             >
-              <Avatar sx={{ width: 40, height: 40 }} src="/broken-image.jpg"/>
+              <Avatar sx={{ width: 40, height: 40 }} src="/broken-image.jpg" />
             </IconButton>
           </>
         )}
       </Box>
-      
-
-
     </React.Fragment>
-  );
+  )
 }
