@@ -3,6 +3,8 @@ import Router from 'next/router'
 import { FunctionComponent, ReactNode, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { setLogin } from 'src/redux/reducers/userReducer'
+import Nav from './Nav/Nav'
+import Footer from './Footer'
 
 const Layout: FunctionComponent<{ children: ReactNode }> = ({ children }) => {
   const dispatch = useDispatch()
@@ -31,7 +33,12 @@ const Layout: FunctionComponent<{ children: ReactNode }> = ({ children }) => {
       })
   }, [dispatch, Router.asPath])
 
-  return <>{children}</>
+  return (
+    <>
+    {children}
+    <Footer />
+    </>
+  )
 }
 
 export default Layout

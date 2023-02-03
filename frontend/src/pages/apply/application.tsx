@@ -1,33 +1,47 @@
-import * as React from 'react'
 import styled from '@emotion/styled'
 // React Library
-import { useEffect, useState } from 'react'
+import { useEffect, useState, Fragment } from 'react'
 import Router from 'next/router'
 // Redux & axios
 import { useSelector } from 'react-redux'
 // Custom Library
-import NavFixed from 'src/components/Nav/NavFixed'
 import Header from 'src/components/Header'
-import Footer from 'src/components/Footer'
+import Nav from 'src/components/Nav/Nav'
 // MUI Library
 import {
-  Button,
-  Dialog, DialogActions, DialogTitle, DialogContent, DialogContentText,
   Box,
-  Step, Stepper, StepLabel,
-  Typography,
-  Paper,
+  Button,
+  Card, CardActions, CardContent,
+  Dialog, DialogActions, DialogTitle, DialogContent, DialogContentText,
   Divider,
+  FormControl,
+  Input, InputLabel, InputAdornment,
+  Paper,
+  Typography,
+  TextField,
 } from '@mui/material'
+import { AccountCircle } from '@mui/icons-material'
 import { motion, useAnimation } from 'framer-motion'
+import { color } from '@mui/system'
 
 
 const Body = styled(motion.div)`
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  height: 240%;
   width: 100%;
   align-items: center;
+  background-color: #F6F6F6;
+
+  & .contentTitle {
+    height: 30px;
+    font-family: 'ChosunBg';
+    font-size: 1.3rem;
+    font-weight: 100;
+    color: #4378FF;
+    text-align: left;
+    padding: 8%;
+  }
 
   @media (max-width: 600px) {
 
@@ -35,170 +49,121 @@ const Body = styled(motion.div)`
 `
 
 const Application = () => {
+
   {/* LogIn Checking */ }
   const isLogin = useSelector((store: Store) => {
     return store.user.login
   })
   const [introEnd, setIntroEnd] = useState(false)
-  const introAnimation_1 = useAnimation()
-  const introAnimation_2 = useAnimation()
   useEffect(() => {
     const intro = async () => {
-      await introAnimation_1.start({
-        opacity: 1,
-        filter: 'blur(0px) brightness(100%)',
-        transition: { duration: 1.3 },
-      })
-      await introAnimation_1.start({
-        top: '8%',
-        scale: 0.6,
-        transition: { duration: 1, ease: 'easeInOut' },
-      })
-      introAnimation_1.start({
-        y: -8,
-        transition: {
-          repeat: Infinity,
-          duration: 1.5,
-          repeatType: 'reverse',
-        },
-      })
       setIntroEnd(true)
     }
     intro()
-  }, [introAnimation_1, introAnimation_2])
-
-  {/* Form Stepper */ }
-  const steps = ['지원 정보', '자기소개서', '제출'];
-  const [activeStep, setActiveStep] = React.useState(0);
-
-  const handleNext = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep + 1);
-  };
-  const handleBack = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep - 1);
-  };
-  const handleReset = () => {
-    setActiveStep(0);
-  };
+  })
 
 
   return (
     <Body>
-      <NavFixed />
-      {/* Header */}
-
-      {/* Application Form */}
-      <Box sx={{ width: '66%', mt: 10 }}>
-        <Stepper activeStep={activeStep}>
-          {steps.map((label) => {
-            const stepProps: { completed?: boolean } = {};
-            return (
-              <Step key={label} {...stepProps}>
-                <StepLabel>{label}</StepLabel>
-              </Step>
-            );
-          })}
-        </Stepper>
-
-        {/* Form BOX */}
+      <Nav />
+      <Header name="지원하기" />
+      {/* From Wrapper */}
+      <Box sx={{ width: '50%' }}>
+        {/* Form Contents */}
         <Box
           sx={{
-            display: 'flex',
-            flexWrap: 'wrap',
-            mt: 3.5,
-            width: "100%",
-            height: 500,
-            '& > :not(style)': {
-              width: "100%",
-              height: "100%",
-            },
+            width: '100%',
+            height: '20px'
           }}
         >
-          <Paper elevation={3} />
-        </Box>
-        {activeStep === steps.length ? (
-          <React.Fragment>
-            <Typography sx={{ mt: 2, mb: 1 }}>
-              제출하시겠습니까?
-            </Typography>
-            <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
-              <Box sx={{ flex: '1 1 auto' }} />
-              <Button onClick={handleReset}>
-                뒤로
-              </Button>
-              <Button type="submit" sx={{ color: "green" }}>
-                제출
-              </Button>
-            </Box>
-          </React.Fragment>
-        ) : (
-          <React.Fragment>
-            <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
-              <Button
-                color="inherit"
-                disabled={activeStep === 0}
-                onClick={handleBack}
-                sx={{ mr: 1 }}
-              >
-                뒤로
-              </Button>
-              <Box sx={{ flex: '1 1 auto' }} />
-              <Button onClick={handleNext}>
-                {activeStep === steps.length - 1 ? '다음' : '다음'}
-              </Button>
-            </Box>
-          </React.Fragment>
-        )}
-      </Box>
-      
-      <Footer />
-
-      {/* Interaction */}
-      <Dialog
-        fullWidth={true}
-        maxWidth="xs"
-        open={introEnd}
-        onClose={() => {
-          setIntroEnd(false)
-          if (isLogin) {
-            introAnimation_2.start({
-              opacity: 1,
-              filter: 'blur(0px) brightness(100%)',
-              transition: { delay: 0.3, duration: 1.5 },
-            })
-          } else {
-            Router.push('/');
-          }
-        }}
-      >
-        <DialogTitle sx={{ fontWeight: 800 }}>
-          신청 안내
-        </DialogTitle>
-        <DialogContent>
-          <DialogContentText sx={{ color: 'black' }}>
-            {isLogin ? '~ 지원서 작성 설명 ~' : '로그인이 필요한 서비스입니다.'}
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button
-            sx={{ fontFamily: 'nanumSquare' }}
-            onClick={() => {
-              setIntroEnd(false)
-              if (isLogin) {
-                introAnimation_2.start({
-                  opacity: 1,
-                  filter: 'blur(0px) brightness(100%)',
-                  transition: { delay: 0.3, duration: 1.5 },
-                })
-              } else {
-                Router.push('/');
-              }
+          {/* 1. 개인정보 */}
+          <Paper
+            elevation={3}
+            sx={{
+              height: '450px',
+              mb: 5
             }}
           >
-            확인
+            <Typography className='contentTitle'> <b>|</b> 개인정보 </Typography>
+            {/* Input Contents */}
+          </Paper>
+          {/* 2. 포트폴리오 */}
+          <Paper
+            elevation={3}
+            sx={{
+              height: '450px',
+              mb: 5
+            }}
+          >
+            <Typography className='contentTitle'> <b>|</b> 포트폴리오 </Typography>
+            {/* Input Contents */}
+          </Paper>
+          {/* 3. 자기소개서 */}
+          <Paper
+            elevation={3}
+            sx={{
+              height: '600px',
+              mb: 4
+            }}
+          >
+            <Typography className='contentTitle'> <b>|</b> 자기소개서 </Typography>
+            {/* Input Contents */}
+          </Paper>
+          {/* Submit Button */}
+          <Button
+            type="submit"
+            variant="contained"
+            fullWidth
+            sx={{
+              mt: 5,
+              width: '50%',
+              height: '55px',
+              borderRadius: '10px',
+            }}
+          >
+            <Typography
+              sx={{
+                fontSize: '1.2rem',
+                fontWeight: 900
+              }}>
+              제출하기
+            </Typography>
           </Button>
-        </DialogActions>
-      </Dialog>
+        </Box>
+      </Box>
+      {/* Interaction */}
+      {!isLogin && (
+        <>
+          <Dialog
+            fullWidth={true}
+            maxWidth="xs"
+            open={introEnd}
+            onClose={() => {
+              Router.push('/');
+            }}
+          >
+            <DialogTitle sx={{ fontWeight: 800 }}>
+              안내
+            </DialogTitle>
+            <DialogContent>
+              <DialogContentText sx={{ color: 'black' }}>
+                로그인이 필요한 페이지입니다.
+              </DialogContentText>
+            </DialogContent>
+            <DialogActions>
+              <Button
+                onClick={() => {
+                  if (!isLogin) {
+                    Router.push('/account/login');
+                  }
+                }}
+              >
+                확인
+              </Button>
+            </DialogActions>
+          </Dialog>
+        </>
+      )}
     </Body>
   )
 }

@@ -364,7 +364,6 @@ const Index: NextPage = () => {
         </motion.div>
       </Intro>
       <Section></Section>
-      <Footer />
     </Body>
   )
 }

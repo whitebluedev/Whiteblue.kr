@@ -1,11 +1,10 @@
 import * as React from 'react'
 import styled from '@emotion/styled'
-import { motion } from 'framer-motion'
+import { motion, transform } from 'framer-motion'
 // React Library
 import { useCallback, useState, FormEvent } from 'react'
 import { NextPage } from 'next'
 import Router from 'next/router'
-import Image from 'next/image'
 // Redux & axios
 import { useDispatch } from 'react-redux'
 import { Account, setLogin, setAccount } from 'src/redux/reducers/userReducer'
@@ -14,52 +13,30 @@ import axios, { AxiosError, AxiosResponse } from 'axios'
 import {
   Box,
   Button,
-  IconButton,
-  useMediaQuery,
   Divider,
   FormControl,
+  IconButton,
   Input,
   InputLabel,
   InputAdornment,
   Typography,
+  useMediaQuery,
 } from '@mui/material'
 import { Visibility, VisibilityOff } from '@mui/icons-material'
 // Custom Library
-import Footer from 'src/components/Footer'
 
 const Body = styled(motion.div)`
   width: 100%;
-  height: 100%;
+  height: 88%;
   display: flex;
   flex-direction: column;
 `
 
 const Container = styled(motion.div)`
-  padding: 7% 37%;
-
-  & .logInBox {
-    margin: 2%;
-  }
-  & .btn {
-    height: 50px;
-    border-radius: 8px;
-    font-size: 1rem;
-  }
+  padding: 7% 36%;
 
   @media (max-width: 600px) {
-    padding: 30% 10%;
-  }
-`
-
-const Title = styled(motion.div)`
-  padding-top: 5%;
-  font-weight: bold;
-  font-size: 2.5em;
-`
-
-const Pointer = styled(motion.div)`
-  & :hover {
-    cursor: pointer;
+    padding: 20% 3%;
   }
 `
 
@@ -85,7 +62,7 @@ const LogIn: NextPage = () => {
     [username, password, dispatch]
   )
 
-  const [showPassword, setShowPassword] = React.useState(false)
+  const [showPassword, setShowPassword] = React.useState(true)
   const handleClickShowPassword = () => setShowPassword((show) => !show)
   const handleMouseDownPassword = (
     event: React.MouseEvent<HTMLButtonElement>
@@ -97,30 +74,38 @@ const LogIn: NextPage = () => {
   return (
     <Body>
       <Container>
-        <Pointer>
-          <Image
-            src="/image/favicon.png"
-            width={isMobile ? 50 : 90}
-            height={isMobile ? 50 : 90}
-            alt="Title"
-            onClick={() => {
-              Router.push('/')
-            }}
-          />
-        </Pointer>
-        <Title> 로그인 </Title>
+        <Typography
+          sx={{
+            fontSize: '2em',
+            fontFamily: 'GmarketSans',
+            '&:hover': {
+              cursor: 'pointer'
+            }            
+          }}
+          onClick={() => {
+            Router.push('/')
+          }}
+        >
+          WHITEBLUE
+        </Typography>
 
         {/* LogIn Box */}
         <Box
-          className="logInBox"
           component="form"
           onSubmit={logInHandler}
           noValidate
-          autoComplete="on"
+          autoComplete="off"
+          sx={{
+            height: '60%',
+            m: '5%',
+            border: 'solid 0.1rem',
+            borderRadius: '10px',
+            borderColor: '#D5D5D5'
+          }}
         >
           {/* username */}
-          <FormControl sx={{ mt: 3, mb: 2, width: '100%' }} variant="standard">
-            <InputLabel>아이디*</InputLabel>
+          <FormControl sx={{ mt: 4, mb: 2, width: '80%' }} variant="standard">
+            <InputLabel>아이디</InputLabel>
             <Input
               required
               value={username}
@@ -132,12 +117,12 @@ const LogIn: NextPage = () => {
           <div />
 
           {/* password */}
-          <FormControl sx={{ mt: 3, mb: 2, width: '100%' }} variant="standard">
-            <InputLabel>비밀번호*</InputLabel>
+          <FormControl sx={{ mt: 3, mb: 2, width: '80%' }} variant="standard">
+            <InputLabel>비밀번호</InputLabel>
             <Input
               required
               value={password}
-              type={showPassword ? 'text' : 'password'}
+              type={showPassword ? 'password' : 'text'}
               endAdornment={
                 <InputAdornment position="end">
                   <IconButton
@@ -157,31 +142,63 @@ const LogIn: NextPage = () => {
           <div />
 
           <Button
-            className="btn"
             type="submit"
             variant="contained"
             fullWidth
-            sx={{ mt: 3.5 }}
+            sx={{
+              mt: 6,
+              width: '80%',
+              height: '55px',
+              borderRadius: '10px',
+            }}
           >
-            로그인
+            <Typography
+             sx={{ 
+              fontSize: '1.2rem',
+              fontWeight: 900
+              }}>
+                로그인
+            </Typography>
           </Button>
+          </Box>
 
           {/* SignIn */}
-          <Divider textAlign="center" sx={{ mt: 5, mb: 2 }}>
+          <Divider           
+           sx={{
+            mt: 5,
+            mb: 2,
+            width: '100%',
+            color: '#BDBDBD'
+           }}
+          >
             회원 가입
           </Divider>
-
           <Button
             className="btn"
             variant="contained"
             fullWidth
-            color="success"
-            sx={{ mb: 2, backgroundColor: '#000', color: '#fff' }}
+            sx={{
+              mb: 2,
+              backgroundColor: '#000',
+              color: '#fff',
+              width: '73%',
+              height: '55px',
+              borderRadius: '10px',
+              '&:hover': {
+                backgroundColor: '#000'
+              }  
+              
+            }}
             onClick={() => {
               Router.push('http://localhost:8000/oauth2/authorization/kakao')
             }}
           >
-            카카오톡 간편계정 만들기
+            <Typography
+             sx={{ 
+              fontWeight: 900
+              }}>
+                카카오톡 간편계정 만들기
+            </Typography>
           </Button>
 
           {/* 아이디 & 비번 찾기 */}
@@ -199,9 +216,8 @@ const LogIn: NextPage = () => {
             <Divider orientation="vertical" flexItem />
             <Typography variant="caption">비밀번호 찾기</Typography>
           </Box>
-        </Box>
+        
       </Container>
-      <Footer />
     </Body>
   )
 }

@@ -8,7 +8,6 @@ import Image from 'next/image'
 
 // MUI Library
 import {
-  Divider,
   Toolbar,
   Tooltip,
   Typography,
@@ -18,6 +17,7 @@ import {
 const Body = styled(motion.div)`
   width: 100%;
   padding: 1% 0;
+  background-color: #fff;
 
   @media (max-width: 600px) {
     width: 100%;
@@ -25,9 +25,8 @@ const Body = styled(motion.div)`
 `
 
 const LogoWrapper = styled(motion.div)`
-  margin-left: 10%;
+  margin-left: 16%;
   text-align: left;
-  font-size: 0.8rem;
   color: #9d9d9d;
 
   @media (max-width: 600px) {
@@ -40,7 +39,7 @@ const CopyrightWrapper = styled(motion.div)`
 `
 
 const SNSWrapper = styled(motion.div)`
-  margin-right: 15%;
+  margin-right: 19%;
 
   & :hover {
     cursor: pointer;
@@ -64,19 +63,20 @@ const Footer: FunctionComponent = () => {
 
   return (
     <Body>
-      <Divider sx={{ mx: 20, my: 3 }} />
       <Toolbar>
         <LogoWrapper>
           <Toolbar>
             <CopyrightWrapper>
-              <Typography variant="overline" sx={{ fontFamily: 'GmarketSans' }}>
-                © 2023{' '}
-                <span>
-                  <b>WHITEBLUE</b>
-                </span>{' '}
-                Dev.
+              <Typography
+               variant="overline"
+               sx={{ 
+                fontFamily: 'GmarketSans',
+                fontSize: '0.9em'
+                }}
+              >
+                © 2023 WHITEBLUE DEV
               </Typography>
-              <Typography sx={{ fontSize: '0.1rem' }}>
+              <Typography sx={{ fontSize: '0.7rem' }}>
                 서울특별시 노원구 화랑로 815 삼육대학교 다니엘관 304호
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               </Typography>
