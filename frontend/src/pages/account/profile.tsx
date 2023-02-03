@@ -1,58 +1,115 @@
-import * as React from 'react';
+import styled from '@emotion/styled'
 // React Library
-import {
-  useEffect,
-  useState,
-} from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import axios, { AxiosError, AxiosResponse } from 'axios'
-// Custom Library
-import { Account, setLogin, setAccount } from 'src/redux/reducers/userReducer'
+import { useEffect, useState, Fragment } from 'react'
 import Router from 'next/router'
-import NavFixed from 'src/components/Nav/NavFixed';
-import Footer from 'src/components/Footer';
+// Redux & axios
+import { useSelector } from 'react-redux'
+// Custom Library
+import Header from 'src/components/Header'
+import Nav from 'src/components/Nav/Nav'
 // MUI Library
 import {
   Box,
+  Button,
+  Dialog, DialogActions, DialogTitle, DialogContent, DialogContentText,
+  Divider,
+  FormControl,
+  Input, InputLabel, InputAdornment,
   Paper,
-} from '@mui/material';
-
-import styled from '@emotion/styled'
+  Typography,
+  TextField,
+} from '@mui/material'
+import { AccountCircle } from '@mui/icons-material'
 import { motion, useAnimation } from 'framer-motion'
 
 
 const Body = styled(motion.div)`
-  width: 100%;
   display: flex;
   flex-direction: column;
-  background-color: #fff;
+  height: 100%;
+  width: 100%;
+  align-items: center;
+  background-color: #F6F6F6;
+
+  @media (max-width: 600px) {
+
+  }
 `
 
 const Profile = () => {
+  {/* LogIn Checking */ }
+  const isLogin = useSelector((store: Store) => {
+    return store.user.login
+  })
+  const [introEnd, setIntroEnd] = useState(false)
+
+  useEffect(() => {
+    const intro = async () => {
+      setIntroEnd(true)
+    }
+    intro()
+  })
+
+
+
   return (
     <Body>
-      <NavFixed />
-      {/* Header */}
-
-      {/* Profile BOX */}
-      <Box
-        sx={{
-          display: "flex",
-          flexWrap: "wrap",
-          justifyContent: "center",
-
-          '& > :not(style)': {
-            mt: 3.5,
-            width: "66%",
+      <Nav />
+      <Header name="내 정보" />
+      {/* Profile Box */}
+      <Box sx={{ width: '50%' }}>
+        {/* Contents */}
+        <Box
+          sx={{
+            display: 'flex',
+            flexWrap: 'wrap',
+            width: "100%",
             height: 500,
-          },
-        }}
-      >
-        <Paper elevation={3} />
-      </Box>
-      <Footer />
+            '& > :not(style)': {
+              width: "100%",
+              height: "100%",
+            },
+          }}
+        >
+          <Paper elevation={3}>
+            <Typography className="title"> Profile </Typography>
+          </Paper>
+        </Box>
 
-      {/* LogIn Checking */}
+      </Box>
+      {/* Interaction */}
+      {!isLogin && (
+        <>
+          <Dialog
+            fullWidth={true}
+            maxWidth="xs"
+            open={introEnd}
+            onClose={() => {
+              Router.push('/');
+            }}
+          >
+            <DialogTitle sx={{ fontWeight: 800 }}>
+              안내
+            </DialogTitle>
+            <DialogContent>
+              <DialogContentText sx={{ color: 'black' }}>
+               로그인이 필요한 페이지입니다.
+              </DialogContentText>
+            </DialogContent>
+            <DialogActions>
+              <Button
+                onClick={() => {
+                  if (!isLogin) {
+                    Router.push('/account/login');
+                  }
+                }}
+              >
+                확인
+              </Button>
+            </DialogActions>
+          </Dialog>
+        </>
+      )}
     </Body>
   )
 }

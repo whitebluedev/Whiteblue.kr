@@ -1,6 +1,10 @@
 import * as React from 'react'
 // React Library
-import { useCallback, useEffect, useState } from 'react'
+import {
+  useCallback,
+  useState,
+  MouseEvent
+} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import axios, { AxiosError, AxiosResponse } from 'axios'
 // Custom Library
@@ -8,27 +12,29 @@ import { User, setLogin } from 'src/redux/reducers/userReducer'
 import Router from 'next/router'
 // MUI Library
 import {
+  Avatar,
   Box,
+  Button,
+  Divider,
+  IconButton,
+  ListItemIcon,
   Menu,
   MenuItem,
-  ListItemIcon,
-  IconButton,
-  Divider,
-  Avatar,
+  Typography,
   useMediaQuery,
 } from '@mui/material'
-import { Settings, Logout } from '@mui/icons-material'
+import { Settings, Logout, Login } from '@mui/icons-material'
 import SendIcon from '@mui/icons-material/Send'
 
 export default function AccountMenu() {
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
   const open = Boolean(anchorEl)
   const isLogin = useSelector((store: Store) => {
     return store.user.login
   })
   const dispatch = useDispatch()
 
-  const handleClick = useCallback((event: React.MouseEvent<HTMLElement>) => {
+  const handleClick = useCallback((event: MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget)
   }, [])
 
@@ -50,7 +56,7 @@ export default function AccountMenu() {
   const isMobile = useMediaQuery('(max-width:600px)')
 
   return (
-    <React.Fragment>
+    <>
       <Box
         sx={{ display: 'inline', alignItems: 'center', textAlign: 'center' }}
       >
@@ -79,7 +85,7 @@ export default function AccountMenu() {
                   overflow: 'visible',
                   filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
                   mt: 1.5,
-                  '&:before': {
+                  '& :before': {
                     content: '""',
                     display: 'block',
                     position: 'absolute',
@@ -138,18 +144,18 @@ export default function AccountMenu() {
         {/* 로그아웃 상태 */}
         {!isLogin && (
           <>
-            <IconButton
+            <Button
+              sx={{ color: '#8C8C8C' }}
               onClick={() => {
                 Router.push('/account/login')
               }}
-              size="small"
-              sx={{ ml: 2 }}
             >
-              <Avatar sx={{ width: 40, height: 40 }} src="/broken-image.jpg" />
-            </IconButton>
+              {isMobile ? '' : <Typography> LOGIN&nbsp; </Typography>}
+              <Logout fontSize="medium" />
+            </Button>
           </>
         )}
       </Box>
-    </React.Fragment>
+    </>
   )
 }

@@ -1,24 +1,45 @@
-import * as React from 'react'
+import React from 'react'; import { FunctionComponent } from 'react'
 import styled from '@emotion/styled'
 import { motion } from 'framer-motion'
 // React Library
-import { FunctionComponent } from 'react'
 // Custom Library
-
 // MUI Library
-import { Divider } from '@mui/material'
+import { Typography } from '@mui/material'
 
 const Body = styled(motion.div)`
   width: 100%;
-  padding: 0.3% 0;
+  padding: 8% 0 4% 25%;
+  text-align: left;
+
+  & .divider {
+    text-align: center;
+  }
 `
-const Header: FunctionComponent = () => {
-  return (
+
+const Divider = styled(motion.div)`
+  width: 67%;
+  height: 4%;
+  margin-top: 1%;
+  background-color: #BDBDBD;  
+`
+
+type Title = {
+    name: string;
+};
+
+const Header: FunctionComponent<Title> = ({ name }) => (
     <Body>
-      <Divider textAlign="center" sx={{ mx: 20, my: 3 }}>
-        example
-      </Divider>
+        <Typography
+            variant='h4'
+            sx={{
+                fontFamily: 'ChosunBg',
+                fontWeight: 100
+            }}
+        >
+            {name}
+        </Typography>
+        <Divider className='divider' />
     </Body>
-  )
-}
+);
+
 export default Header
