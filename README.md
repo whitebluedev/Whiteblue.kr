@@ -26,4 +26,4 @@
 * **QueryDSL**
 
 ### ERD
-![whiteblue](https://user-images.githubusercontent.com/82157140/215345451-caeec39c-257a-4dfd-b183-73a1296983e3.png)
+![application](https://user-images.githubusercontent.com/82157140/216817678-35f8badc-a651-47a0-bcb2-d137f40c30c1.png)
