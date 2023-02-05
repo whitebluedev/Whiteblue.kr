@@ -1,0 +1,26 @@
+2023-02-05 21:03:33.766 [INFO] org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 6.2.5.Final
+2023-02-05 21:03:33.792 [INFO] org.springframework.boot.StartupInfoLogger - Starting BackendApplication using Java 17.0.2 on Desktop with PID 30820 (C:\Users\san06\Desktop\Repository\Whiteblue\backend\build\classes\java\main started by san06 in C:\Users\san06\Desktop\Repository\Whiteblue\backend)
+2023-02-05 21:03:33.795 [INFO] org.springframework.boot.SpringApplication - The following 1 profile is active: "env"
+2023-02-05 21:03:34.347 [INFO] org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-02-05 21:03:34.409 [INFO] org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 49 ms. Found 3 JPA repository interfaces.
+2023-02-05 21:03:34.832 [INFO] org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8000 (http)
+2023-02-05 21:03:34.844 [INFO] org.apache.juli.logging.DirectJDKLog - Initializing ProtocolHandler ["http-nio-8000"]
+2023-02-05 21:03:34.845 [INFO] org.apache.juli.logging.DirectJDKLog - Starting service [Tomcat]
+2023-02-05 21:03:34.845 [INFO] org.apache.juli.logging.DirectJDKLog - Starting Servlet engine: [Apache Tomcat/9.0.68]
+2023-02-05 21:03:34.957 [INFO] org.apache.juli.logging.DirectJDKLog - Initializing Spring embedded WebApplicationContext
+2023-02-05 21:03:34.957 [INFO] org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1123 ms
+2023-02-05 21:03:35.075 [INFO] org.hibernate.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-02-05 21:03:35.101 [INFO] org.hibernate.Version - HHH000412: Hibernate ORM core version 5.6.12.Final
+2023-02-05 21:03:35.185 [INFO] org.hibernate.annotations.common.reflection.java.JavaReflectionManager - HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-02-05 21:03:35.243 [INFO] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2023-02-05 21:03:35.433 [INFO] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2023-02-05 21:03:35.442 [INFO] org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQL57Dialect
+2023-02-05 21:03:35.932 [INFO] org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-02-05 21:03:35.939 [INFO] org.springframework.orm.jpa.AbstractEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-02-05 21:03:36.554 [INFO] org.springframework.security.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@7cc842b0, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@53dd29e0, org.springframework.security.web.context.SecurityContextPersistenceFilter@4d10f182, org.springframework.security.web.header.HeaderWriterFilter@41831611, org.springframework.web.filter.CorsFilter@3733b1f4, org.springframework.security.web.authentication.logout.LogoutFilter@1f381eaf, org.springframework.security.oauth2.client.web.OAuth2AuthorizationRequestRedirectFilter@36a8ebca, org.springframework.security.oauth2.client.web.OAuth2LoginAuthenticationFilter@328e687e, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@5b53c3c5, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@70f0c352, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@7e2f16bd, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@594fcb22, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@4e93d23e, org.springframework.security.web.session.SessionManagementFilter@5749e633, org.springframework.security.web.access.ExceptionTranslationFilter@7095b688, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@38326fd5]
+2023-02-05 21:03:36.755 [INFO] org.apache.juli.logging.DirectJDKLog - Starting ProtocolHandler ["http-nio-8000"]
+2023-02-05 21:03:36.768 [INFO] org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8000 (http) with context path ''
+2023-02-05 21:03:36.776 [INFO] org.springframework.boot.StartupInfoLogger - Started BackendApplication in 3.266 seconds (JVM running for 4.052)
+2023-02-05 21:04:01.289 [INFO] org.springframework.orm.jpa.AbstractEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-02-05 21:04:01.290 [INFO] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2023-02-05 21:04:01.296 [INFO] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
