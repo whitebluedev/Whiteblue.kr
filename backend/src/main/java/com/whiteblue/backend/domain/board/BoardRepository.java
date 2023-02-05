@@ -1,6 +1,5 @@
-package com.whiteblue.backend.domain.board.repository;
+package com.whiteblue.backend.domain.board;
 
-import com.whiteblue.backend.domain.board.entity.Board;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

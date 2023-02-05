@@ -1,6 +1,5 @@
-package com.whiteblue.backend.domain.user.repository;
+package com.whiteblue.backend.domain.user;
 
-import com.whiteblue.backend.domain.user.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -14,5 +13,5 @@ public interface UserRepository extends JpaRepository<User, Integer> {
     @Query("select distinct u from User u left join fetch u.board")
     List<User> findAll();
 
-    Optional<User> findByEmail(String email);
+    Optional<User> findByUsername(String username);
 }

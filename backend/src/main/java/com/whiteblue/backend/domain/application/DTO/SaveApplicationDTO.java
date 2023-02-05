@@ -1,7 +1,7 @@
 package com.whiteblue.backend.domain.application.DTO;
 
-import com.whiteblue.backend.domain.application.entity.Application;
-import com.whiteblue.backend.domain.user.entity.User;
+import com.whiteblue.backend.domain.application.Application;
+import com.whiteblue.backend.domain.user.User;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Data;

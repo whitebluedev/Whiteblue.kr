@@ -1,6 +1,6 @@
-package com.whiteblue.backend.domain.application.entity;
+package com.whiteblue.backend.domain.application;
 
-import com.whiteblue.backend.domain.user.entity.User;
+import com.whiteblue.backend.domain.user.User;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;

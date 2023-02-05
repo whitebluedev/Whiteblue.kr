@@ -1,11 +1,9 @@
-package com.whiteblue.backend.domain.application.service;
+package com.whiteblue.backend.domain.application;
 
 import com.whiteblue.backend.domain.application.DTO.ResponseApplicationDTO;
 import com.whiteblue.backend.domain.application.DTO.SaveApplicationDTO;
-import com.whiteblue.backend.domain.application.entity.Application;
-import com.whiteblue.backend.domain.application.repository.ApplicationRepository;
-import com.whiteblue.backend.domain.user.entity.User;
-import com.whiteblue.backend.domain.user.repository.UserRepository;
+import com.whiteblue.backend.domain.user.User;
+import com.whiteblue.backend.domain.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

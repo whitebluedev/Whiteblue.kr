@@ -5,8 +5,7 @@ build/
 !**/src/test/**/build/
 
 ### Env ###
-application-jdbc.yml
-application-oAuth.yml
+application-env.yml
 
 ### STS ###
 .apt_generated

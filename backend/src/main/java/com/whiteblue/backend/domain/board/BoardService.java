@@ -1,4 +1,4 @@
-package com.whiteblue.backend.domain.board.service;
+package com.whiteblue.backend.domain.board;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

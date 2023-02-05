@@ -1,9 +1,8 @@
-package com.whiteblue.backend.domain.application.controller;
+package com.whiteblue.backend.domain.application;
 
 import com.whiteblue.backend.domain.application.DTO.ResponseApplicationDTO;
 import com.whiteblue.backend.domain.application.DTO.SaveApplicationDTO;
-import com.whiteblue.backend.domain.application.service.ApplicationService;
-import com.whiteblue.backend.domain.user.entity.User;
+import com.whiteblue.backend.domain.user.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.validation.annotation.Validated;

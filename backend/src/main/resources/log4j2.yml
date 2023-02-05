@@ -1,0 +1,43 @@
+Configuration:
+  name: Default
+  status: info
+  Properties:
+    Property:
+      name: path
+      value: "log"
+  Appenders:
+    Console:
+      name: Console_Appender
+      target: SYSTEM_OUT
+      PatternLayout:
+        pattern: "%style{%d{yyyy-MM-dd HH:mm:ss.SSS}} %highlight{[%level]}{FATAL=red,
+                ERROR=red, INFO=green, DEBUG=magenta, TRACE=yellow} %class - %message%n"
+        disableAnsi: false
+    RollingFile:
+      name: RollingFile_Appender
+      fileName: ${path}/log.log
+      filePattern: "${path}/archive/log.log_%d{yyyy-MM-dd}-%i.gz"
+      PatternLayout:
+        pattern: "%style{%d{yyyy-MM-dd HH:mm:ss.SSS}} %highlight{[%level]}{FATAL=red,
+                ERROR=red, INFO=green, DEBUG=magenta, TRACE=yellow} %class - %message%n"
+      Policies:
+        TimeBasedTriggeringPolicy:
+          Interval: 1
+          modulate: true
+        SizeBasedTriggeringPolicy:
+          size: "10MB"
+      DefaultRollOverStrategy:
+        max: 10
+        Delete:
+          basePath: "${path}/archive"
+          maxDepth: "1"
+          IfLastModified:
+            age: "P14D"
+          IfAccumulatedFileCount:
+            exceeds: 140
+  Loggers:
+    Root:
+      level: info
+      AppenderRef:
+        - ref: Console_Appender
+        - ref: RollingFile_Appender
