@@ -1,30 +1,44 @@
-import * as React from 'react'
+// React Library
+import { ReactElement } from 'react';
+// Custom Library
 import styled from '@emotion/styled'
 import { motion } from 'framer-motion'
-// React Library
-import { FunctionComponent } from 'react'
-// Custom Library
-import Router from 'next/router'
-import AccountMenu from './AccountMenu'
+import AccountMenu from './AccountMenu';
 // MUI Library
 import {
   AppBar,
   CssBaseline,
+  Slide,
   Toolbar,
   Typography,
-} from '@mui/material'
+  useScrollTrigger,
+} from '@mui/material';
+import Router from 'next/router';
 
 
-const Body = styled(motion.div)`
-  width: 100%;
-  position: absolute;
-`
+interface Props {
+  window?: () => Window;
+  children: ReactElement;
+}
 
-const Nav: FunctionComponent = () => {
+function HideOnScroll(props: Props) {
+  const { children, window } = props;
+  const trigger = useScrollTrigger({
+    target: window ? window() : undefined,
+  });
+
+  return (
+    <Slide appear={false} direction="down" in={!trigger}>
+      {children}
+    </Slide>
+  );
+}
+
+export default function HideNav(props: Props) {
   return (
     <>
       <CssBaseline />
-      <Body>
+      <HideOnScroll {...props}>
         <AppBar
           sx={{
             p: 0.5,
@@ -70,11 +84,10 @@ const Nav: FunctionComponent = () => {
               }}>
               <AccountMenu />
             </Typography>
-          </Toolbar>
+          </Toolbar>        
         </AppBar>
-      </Body>
+      </HideOnScroll>
+      <Toolbar />
     </>
-  )
+  );
 }
-
-export default Nav

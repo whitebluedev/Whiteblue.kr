@@ -14,9 +14,8 @@ import {
   Dialog, DialogActions, DialogTitle, DialogContent, DialogContentText,
   Paper,
   Typography,
-  TextField,
 } from '@mui/material'
-import { motion, useAnimation } from 'framer-motion'
+import { motion } from 'framer-motion'
 
 
 const Body = styled(motion.div)`
@@ -27,12 +26,38 @@ const Body = styled(motion.div)`
   align-items: center;
   background-color: #F6F6F6;
 
+  & .router {
+    height: 30px;
+    color: #4378FF;
+    font-family: 'ChosunBg';
+    font-size: 1rem;
+    font-weight: 100;
+    margin: 5% 8%;
+    text-align: left;
+    width: 18%;
+  }
+
+  & .content {
+    height: 30px;
+    font-size: 1rem;
+    text-align: left;
+    padding: 2% 8%;
+    font-family: 'Pretendard';
+  }
+
+  & .detail {
+    text-align: left;
+    padding: 5% 8%;
+    font-size: 0.8rem;
+    font-weight: 100;
+  }
+
   @media (max-width: 600px) {
 
   }
 `
 
-const Profile = () => {
+const applyComplete = () => {
   {/* LogIn Checking */ }
   const isLogin = useSelector((store: Store) => {
     return store.user.login
@@ -49,8 +74,7 @@ const Profile = () => {
   return (
     <Body>
       <HideNav />
-      <Header name="내 정보" />
-      {/* Profile Box */}
+      <Header name="지원서" />
       <Box sx={{ width: '50%' }}>
         {/* Contents Box */}
         <Box
@@ -89,15 +113,32 @@ const Profile = () => {
                 padding: '5% 8% 8% 8%'
               }}
             >
-              Profile
+              제출 완료!
             </Typography>
             <Typography className='content'>
-              Example content
+              작성하신 지원서가 정상적으로 제출되었습니다.
+            </Typography>
+            <Typography className='detail'>
+              ~~ 추가 안내 설명 등등 ~~
+            </Typography>
+            {/* Home Router */}
+            <Typography
+              className='router'
+              sx={{
+                '&:hover': {
+                  cursor: 'pointer'
+                },
+              }}
+              onClick={() => {
+                Router.push('/')
+              }}
+            >
+              홈으로 돌아가기
             </Typography>
           </Paper>
         </Box>
       </Box>
-      {/* Interaction */}
+      {/* LogIn Checking */}
       {!isLogin && (
         <>
           <Dialog
@@ -113,7 +154,7 @@ const Profile = () => {
             </DialogTitle>
             <DialogContent>
               <DialogContentText sx={{ color: 'black' }}>
-               로그인이 필요한 페이지입니다.
+                로그인이 필요한 페이지입니다.
               </DialogContentText>
             </DialogContent>
             <DialogActions>
@@ -130,8 +171,9 @@ const Profile = () => {
           </Dialog>
         </>
       )}
+      {/* Apply Checking */}
     </Body>
   )
 }
 
-export default Profile
+export default applyComplete
