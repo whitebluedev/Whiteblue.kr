@@ -7,8 +7,7 @@ import DnsIcon from '@mui/icons-material/Dns'
 import { useMediaQuery } from '@mui/material'
 import { useEffect, useState } from 'react'
 import { shallowEqual, useSelector } from 'react-redux'
-import Nav from 'src/components/Nav/Nav'
-import Footer from 'src/components/Footer'
+import HideNav from 'src/components/Nav/HideNav'
 
 const Body = styled(motion.div)`
   width: 100%;
@@ -150,8 +149,7 @@ const Index: NextPage = () => {
 
   return (
     <Body>
-      <Nav />
-
+      <HideNav />
       <Title>
         <motion.div
           className="image"

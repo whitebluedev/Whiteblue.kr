@@ -8,7 +8,7 @@ import { Typography } from '@mui/material'
 
 const Body = styled(motion.div)`
   width: 100%;
-  padding: 8% 0 4% 25%;
+  padding: 4% 0 4% 25%;
   text-align: left;
 
   & .divider {

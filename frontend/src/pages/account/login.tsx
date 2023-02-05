@@ -2,12 +2,12 @@ import * as React from 'react'
 import styled from '@emotion/styled'
 import { motion, transform } from 'framer-motion'
 // React Library
-import { useCallback, useState, FormEvent } from 'react'
+import { useCallback, useState, FormEvent, MouseEvent } from 'react'
 import { NextPage } from 'next'
 import Router from 'next/router'
 // Redux & axios
 import { useDispatch } from 'react-redux'
-import { Account, setLogin, setAccount } from 'src/redux/reducers/userReducer'
+import { Profile, setLogin, setAccount } from 'src/redux/reducers/userReducer'
 import axios, { AxiosError, AxiosResponse } from 'axios'
 // MUI Library
 import {
@@ -41,31 +41,31 @@ const Container = styled(motion.div)`
 `
 
 const LogIn: NextPage = () => {
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
+  const [userID, setUserID] = useState('')
+  const [userPWD, setPassword] = useState('')
   const dispatch = useDispatch()
 
   const logInHandler = useCallback(
     (event: FormEvent<HTMLFormElement>) => {
       event.preventDefault()
       axios
-        .post('  ', {
-          username: username,
-          password: password,
+        .post('http://localhost:8888/user', {
+          userID: userID,
+          userPWD: userPWD,
         })
-        .then((response: AxiosResponse<Account>) => {
+        .then((response: AxiosResponse<Profile>) => {
           dispatch(setLogin(true))
           dispatch(setAccount(response.data))
           Router.replace('/')
         })
     },
-    [username, password, dispatch]
+    [userID, userPWD, dispatch]
   )
 
-  const [showPassword, setShowPassword] = React.useState(true)
+  const [showPassword, setShowPassword] = useState(true)
   const handleClickShowPassword = () => setShowPassword((show) => !show)
   const handleMouseDownPassword = (
-    event: React.MouseEvent<HTMLButtonElement>
+    event: MouseEvent<HTMLButtonElement>
   ) => {
     event.preventDefault()
   }
@@ -103,25 +103,25 @@ const LogIn: NextPage = () => {
             borderColor: '#D5D5D5'
           }}
         >
-          {/* username */}
+          {/* userID */}
           <FormControl sx={{ mt: 4, mb: 2, width: '80%' }} variant="standard">
             <InputLabel>아이디</InputLabel>
             <Input
               required
-              value={username}
+              value={userID}
               onChange={(e) => {
-                setUsername(e.target.value)
+                setUserID(e.target.value)
               }}
             />
           </FormControl>
           <div />
 
-          {/* password */}
+          {/* userPWD */}
           <FormControl sx={{ mt: 3, mb: 2, width: '80%' }} variant="standard">
             <InputLabel>비밀번호</InputLabel>
             <Input
               required
-              value={password}
+              value={userPWD}
               type={showPassword ? 'password' : 'text'}
               endAdornment={
                 <InputAdornment position="end">

@@ -1,14 +1,13 @@
-import * as React from 'react'
-// React Library
 import {
   useCallback,
   useState,
   MouseEvent
 } from 'react'
+// Redux & axios
 import { useDispatch, useSelector } from 'react-redux'
 import axios, { AxiosError, AxiosResponse } from 'axios'
 // Custom Library
-import { User, setLogin } from 'src/redux/reducers/userReducer'
+import { setLogin } from 'src/redux/reducers/userReducer'
 import Router from 'next/router'
 // MUI Library
 import {
@@ -23,7 +22,7 @@ import {
   Typography,
   useMediaQuery,
 } from '@mui/material'
-import { Settings, Logout, Login } from '@mui/icons-material'
+import { Settings, Logout } from '@mui/icons-material'
 import SendIcon from '@mui/icons-material/Send'
 
 export default function AccountMenu() {

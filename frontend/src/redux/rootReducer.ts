@@ -1,10 +1,11 @@
 import { HYDRATE } from 'next-redux-wrapper'
 import { CombinedState } from 'redux'
 import { AnyAction, combineReducers } from 'redux'
-import userReducer, { User } from './reducers/userReducer'
+import { Account } from './reducers/userReducer'
+import userReducer from './reducers/userReducer'
 
 interface ReducerState {
-  user: User
+  user: Account
 }
 
 const rootReducer = (
