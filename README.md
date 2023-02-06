@@ -24,6 +24,7 @@
 * **Spring Data JPA**
 * **Spring Security**
 * **OAuth**
+* **JSON Web Token**
 * **QueryDSL**
 
 ### ERD
