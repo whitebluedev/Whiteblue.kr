@@ -1,21 +1,26 @@
 package com.whiteblue.backend.domain.application;
 
-import com.whiteblue.backend.domain.application.DTO.ResponseApplicationDTO;
-import com.whiteblue.backend.domain.application.DTO.SaveApplicationDTO;
+import com.whiteblue.backend.domain.application.DTO.GetApplicationResponse;
+import com.whiteblue.backend.domain.application.DTO.SaveApplicationRequest;
 import com.whiteblue.backend.domain.user.User;
 import com.whiteblue.backend.domain.user.UserRepository;
+import com.whiteblue.backend.security.oAuth.OAuthUser;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @RequiredArgsConstructor
+@Transactional
 @Service
 public class ApplicationService {
     private final ApplicationRepository applicationRepository;
 
     private final UserRepository userRepository;
 
-    public ResponseApplicationDTO findByUser(User user) {
-        Application application = applicationRepository.findByWriter(user)
+    public GetApplicationResponse findByUser(OAuthUser oAuthUser) {
+        User user = userRepository.findById(oAuthUser.getId())
+                                  .orElseThrow();
+        Application application = applicationRepository.findByWriterId(user.getId())
                                                        .orElseGet(() -> applicationRepository.save(Application.builder()
                                                                                                               .name("")
                                                                                                               .phoneNumber("")
@@ -24,7 +29,7 @@ public class ApplicationService {
                                                                                                               .writer(user)
                                                                                                               .build()));
 
-        return ResponseApplicationDTO.builder()
+        return GetApplicationResponse.builder()
                                      .name(application.getName())
                                      .phoneNumber(application.getPhoneNumber())
                                      .major(application.getMajor())
@@ -33,28 +38,15 @@ public class ApplicationService {
                                      .build();
     }
 
-    public ResponseApplicationDTO save(SaveApplicationDTO saveApplicationDTO, User user) {
-        String name = saveApplicationDTO.getName();
-        String phoneNumber = saveApplicationDTO.getPhoneNumber();
-        String major = saveApplicationDTO.getMajor();
-        String introduction = saveApplicationDTO.getIntroduction();
+    public void save(SaveApplicationRequest saveApplicationRequest, OAuthUser oAuthUser) {
+        User user = userRepository.findById(oAuthUser.getId())
+                                  .orElseThrow();
 
-        applicationRepository.findByWriter(user)
-                             .ifPresentOrElse(application -> {
-                                 application.setName(name);
-                                 application.setPhoneNumber(phoneNumber);
-                                 application.setMajor(major);
-                                 application.setIntroduction(introduction);
-                                 applicationRepository.save(application);
-                             }, () -> applicationRepository.save(saveApplicationDTO.toEntity()));
-
-        return ResponseApplicationDTO.builder()
-                                     .name(name)
-                                     .phoneNumber(phoneNumber)
-                                     .major(major)
-                                     .introduction(introduction)
-                                     .writer(user)
-                                     .build();
+        Application application = applicationRepository.findByWriterId(oAuthUser.getId())
+                                                       .orElse(applicationRepository.save(saveApplicationRequest.toEntity()));
+        application.setName(saveApplicationRequest.getName());
+        application.setPhoneNumber(saveApplicationRequest.getPhoneNumber());
+        application.setMajor(saveApplicationRequest.getMajor());
+        application.setIntroduction(saveApplicationRequest.getIntroduction());
     }
-
 }

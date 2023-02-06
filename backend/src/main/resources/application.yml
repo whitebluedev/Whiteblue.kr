@@ -42,4 +42,6 @@ spring:
             user_name_attribute: id
 properties:
   secretKey: ${env.properties.secretKey}
-  redirectUri: ${env.properties.redirectUri}
+  accessTokenExpire: 1
+  refreshTokenExpire: 168
+  redirect-url: http://localhost:3000

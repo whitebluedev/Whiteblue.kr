@@ -18,14 +18,18 @@ import java.time.LocalDateTime;
 public class Application {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
+    @NotNull
     private String name;
 
+    @NotNull
     private String phoneNumber;
 
+    @NotNull
     private String major;
 
+    @NotNull
     private String introduction;
 
     @CreatedDate
@@ -39,7 +43,7 @@ public class Application {
     private User writer;
 
     @Builder
-    public Application(Integer id, String name, String phoneNumber, String major, String introduction, User writer) {
+    public Application(Long id, String name, String phoneNumber, String major, String introduction, User writer) {
         this.id = id;
         this.name = name;
         this.phoneNumber = phoneNumber;

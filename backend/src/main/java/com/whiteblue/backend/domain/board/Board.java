@@ -20,7 +20,7 @@ import java.time.LocalDateTime;
 public class Board {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     @NotBlank
     @Size(max = 30)
@@ -40,7 +40,7 @@ public class Board {
     private User writer;
 
     @Builder
-    public Board(Integer id, String title, String content, User writer) {
+    public Board(Long id, String title, String content, User writer) {
         this.id = id;
         this.title = title;
         this.content = content;

@@ -7,6 +7,7 @@ import lombok.*;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,7 +19,7 @@ import java.util.List;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     @NotBlank
     @Email
@@ -28,11 +29,13 @@ public class User {
     @NotBlank
     private String name;
 
-    @NotBlank
+    @NotNull
     @Enumerated(EnumType.STRING)
     private UserRole role;
 
     private String image;
+
+    private String refreshToken;
 
     @OneToMany(mappedBy = "writer", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
     private final List<Board> board = new ArrayList<>();

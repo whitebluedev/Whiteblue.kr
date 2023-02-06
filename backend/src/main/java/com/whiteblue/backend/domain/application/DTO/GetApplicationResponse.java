@@ -12,7 +12,7 @@ import javax.validation.constraints.NotNull;
 
 @Data
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class ResponseApplicationDTO {
+public class GetApplicationResponse {
     @NotBlank
     private String name;
 
@@ -29,7 +29,7 @@ public class ResponseApplicationDTO {
     private User writer;
 
     @Builder
-    public ResponseApplicationDTO(String name, String phoneNumber, String major, String introduction, User writer) {
+    public GetApplicationResponse(String name, String phoneNumber, String major, String introduction, User writer) {
         this.name = name;
         this.phoneNumber = phoneNumber;
         this.major = major;

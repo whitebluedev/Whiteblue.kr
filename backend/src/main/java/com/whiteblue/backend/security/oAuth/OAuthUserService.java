@@ -1,15 +1,17 @@
-package com.whiteblue.backend.security.OAuth;
+package com.whiteblue.backend.security.oAuth;
 
 import com.whiteblue.backend.domain.user.User;
 import com.whiteblue.backend.domain.user.UserRepository;
 import com.whiteblue.backend.domain.user.UserRole;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
 import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest;
 import org.springframework.security.oauth2.core.OAuth2AuthenticationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Collections;
 import java.util.Map;
 import java.util.Optional;
 
@@ -19,6 +21,7 @@ import java.util.Optional;
 public class OAuthUserService extends DefaultOAuth2UserService {
     private final UserRepository userRepository;
 
+    @Override
     public OAuthUser loadUser(OAuth2UserRequest userRequest) throws OAuth2AuthenticationException {
         Map<String, Object> attributes = super.loadUser(userRequest)
                                               .getAttributes();
@@ -44,7 +47,14 @@ public class OAuthUserService extends DefaultOAuth2UserService {
                                            .build());
         }
 
-        return new OAuthUser(user, attributes);
+        return OAuthUser.builder()
+                        .id(user.getId())
+                        .username(user.getUsername())
+                        .name(user.getName())
+                        .authorities(Collections.singletonList(new SimpleGrantedAuthority(user.getRole()
+                                                                                              .getName())))
+                        .attributes(attributes)
+                        .build();
     }
 
 }

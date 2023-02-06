@@ -11,7 +11,7 @@ import javax.validation.constraints.NotBlank;
 
 @Data
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class SaveApplicationDTO {
+public class SaveApplicationRequest {
     @NotBlank
     private String name;
 
@@ -27,7 +27,7 @@ public class SaveApplicationDTO {
     private User writer;
 
     @Builder
-    public SaveApplicationDTO(String name, String phoneNumber, String major, String introduction, User writer) {
+    public SaveApplicationRequest(String name, String phoneNumber, String major, String introduction, User writer) {
         this.name = name;
         this.phoneNumber = phoneNumber;
         this.major = major;

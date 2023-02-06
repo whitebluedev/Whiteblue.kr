@@ -1,15 +1,12 @@
 package com.whiteblue.backend.domain.application;
 
-import com.whiteblue.backend.domain.application.DTO.ResponseApplicationDTO;
-import com.whiteblue.backend.domain.application.DTO.SaveApplicationDTO;
-import com.whiteblue.backend.domain.user.User;
+import com.whiteblue.backend.domain.application.DTO.GetApplicationResponse;
+import com.whiteblue.backend.domain.application.DTO.SaveApplicationRequest;
+import com.whiteblue.backend.security.oAuth.OAuthUser;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RequiredArgsConstructor
 @RequestMapping("/application")
@@ -17,13 +14,14 @@ import org.springframework.web.bind.annotation.RestController;
 public class ApplicationController {
     private final ApplicationService applicationService;
 
-    public ResponseApplicationDTO findByUser(@AuthenticationPrincipal User user) {
-        return applicationService.findByUser(user);
+    @GetMapping("")
+    public GetApplicationResponse getApplication(@AuthenticationPrincipal OAuthUser oAuthUser) {
+        return applicationService.findByUser(oAuthUser);
     }
 
-    @PostMapping("/")
-    public ResponseApplicationDTO save(@Validated @RequestBody SaveApplicationDTO saveApplicationDTO,
-                                       @AuthenticationPrincipal User user) {
-        return applicationService.save(saveApplicationDTO, user);
+    @PostMapping("")
+    public void saveApplication(@RequestBody @Validated SaveApplicationRequest saveApplicationRequest,
+                                @AuthenticationPrincipal OAuthUser oAuthUser) {
+        applicationService.save(saveApplicationRequest, oAuthUser);
     }
 }
