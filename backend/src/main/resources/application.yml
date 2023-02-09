@@ -2,11 +2,10 @@ server:
   port: 8000
 spring:
   profiles:
-    include:
-      - env
+    include: env
   datasource:
-    url: ${env.datasource.url}
     driver-class-name: com.mysql.cj.jdbc.Driver
+    url: ${env.datasource.url}
     username: ${env.datasource.username}
     password: ${env.datasource.password}
   jpa:
@@ -17,7 +16,6 @@ spring:
         show_sql: true
         format_sql: true
     database: mysql
-    show-sql: true
     open-in-view: false
   security:
     oauth2:
