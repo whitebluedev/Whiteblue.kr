@@ -12,5 +12,5 @@ data class ApplicationProperties(
 
     val refreshTokenExpire: Int,
 
-    val redirectUrl: String
+    val authorizedUri: String
 )

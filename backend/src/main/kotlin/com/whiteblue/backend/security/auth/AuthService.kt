@@ -19,9 +19,9 @@ class AuthService(
     fun refresh(request: HttpServletRequest, accessToken: String): RefreshTokenResponse? {
         val refreshToken = CookieUtil.getCookie(request, "refresh_token")?.value
             ?.also { if (!jwtProvider.validateToken(it)) throw RuntimeException("유효하지 않은 Refresh Token입니다.") }
-            ?: apply { throw RuntimeException("Refresh Token이 존재하지 않습니다.") }
-
+            ?: throw RuntimeException("Refresh Token이 존재하지 않습니다.")
         val authentication = jwtProvider.getAuthentication(accessToken)
+
         return userRepository.getRefreshTokenById((authentication.principal as OAuthUser).id)
             ?.let {
                 if (it == refreshToken) RefreshTokenResponse(accessToken = jwtProvider.createAccessToken(authentication))

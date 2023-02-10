@@ -4,6 +4,7 @@ import com.whiteblue.backend.security.jwt.JWTAccessDeniedHandler
 import com.whiteblue.backend.security.jwt.JWTAuthenticationEntryPoint
 import com.whiteblue.backend.security.jwt.JWTAuthenticationFilter
 import com.whiteblue.backend.security.oAuth.OAuthAuthenticationSuccessHandler
+import com.whiteblue.backend.security.oAuth.OAuthAuthorizationRequestRepository
 import com.whiteblue.backend.security.oAuth.OAuthUserService
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
@@ -20,12 +21,14 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 class SecurityConfig(
     private val oAuthUserService: OAuthUserService,
 
+    private val oAuthAuthorizationRequestRepository: OAuthAuthorizationRequestRepository,
+
     private val oAuthAuthenticationSuccessHandler: OAuthAuthenticationSuccessHandler,
 
     private val jwtAuthenticationFilter: JWTAuthenticationFilter,
 
     private val jwtAuthenticationEntryPoint: JWTAuthenticationEntryPoint,
-    
+
     private val jwtAccessDeniedHandler: JWTAccessDeniedHandler
 ) {
     @Bean
@@ -45,7 +48,11 @@ class SecurityConfig(
 
         http.formLogin { it.disable() }
             .oauth2Login { oAuth2LoginConfigurer ->
-                oAuth2LoginConfigurer.authorizationEndpoint { it.baseUri("/oAuth/login") }
+                oAuth2LoginConfigurer
+                    .authorizationEndpoint {
+                        it.baseUri("/oAuth/login")
+                            .authorizationRequestRepository(oAuthAuthorizationRequestRepository)
+                    }
                     .redirectionEndpoint { it.baseUri("/oAuth/redirect/**") }
                     .userInfoEndpoint { it.userService(oAuthUserService) }
                     .successHandler(oAuthAuthenticationSuccessHandler)

@@ -4,29 +4,26 @@ import com.whiteblue.backend.domain.user.User
 import com.whiteblue.backend.util.BaseTimeEntity
 import jakarta.persistence.*
 import jakarta.validation.constraints.NotNull
-import org.springframework.data.jpa.domain.support.AuditingEntityListener
 
-@EntityListeners(
-    AuditingEntityListener::class
-)
+@Table(name = "application")
 @Entity
 class Application(
     @field:NotNull
-    var name: String = "",
+    var name: String,
 
     @field:NotNull
-    var phoneNumber: String = "",
+    var phoneNumber: String,
 
     @field:NotNull
-    var major: String = "",
+    var major: String,
 
     @field:NotNull
-    var introduction: String = "",
+    var introduction: String,
 
     @field:NotNull
     @OneToOne(cascade = [CascadeType.PERSIST], fetch = FetchType.LAZY)
     var writer: User
-): BaseTimeEntity() {
+) : BaseTimeEntity() {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     val id: Int? = null

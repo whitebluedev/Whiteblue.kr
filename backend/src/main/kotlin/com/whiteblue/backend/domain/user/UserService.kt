@@ -2,7 +2,6 @@ package com.whiteblue.backend.domain.user
 
 import com.whiteblue.backend.domain.user.dto.GetUserResponse
 import com.whiteblue.backend.security.oAuth.OAuthUser
-import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
@@ -11,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional
 class UserService(private val userRepository: UserRepository) {
     @Transactional(readOnly = true)
     fun findByAuth(oAuthUser: OAuthUser): GetUserResponse {
-        return userRepository.findByIdOrNull(oAuthUser.id)!!
+        return userRepository.findByOAuthUser(oAuthUser)
             .run {
                 GetUserResponse(
                     username = username,

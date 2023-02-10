@@ -25,7 +25,7 @@ class JWTProvider(
 
     private val accessTokenExpire = applicationProperties.accessTokenExpire * HOUR
 
-    val refreshTokenExpire = applicationProperties.refreshTokenExpire * HOUR
+    private val refreshTokenExpire = applicationProperties.refreshTokenExpire * HOUR
 
     fun createAccessToken(authentication: Authentication): String {
         val now = Date()
@@ -73,7 +73,7 @@ class JWTProvider(
         val authorities = claims["role"]
             .toString()
             .split(",")
-            .map { role -> SimpleGrantedAuthority(role) }
+            .map(::SimpleGrantedAuthority)
         val principal = OAuthUser(
             id = (claims["id"] as Int).toLong(),
             username = claims["username"] as String,

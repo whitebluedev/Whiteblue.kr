@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component
 import org.springframework.web.filter.OncePerRequestFilter
 
 @Component
-class JWTAuthenticationFilter(private val jwtProvider: JWTProvider): OncePerRequestFilter() {
+class JWTAuthenticationFilter(private val jwtProvider: JWTProvider) : OncePerRequestFilter() {
     override fun doFilterInternal(
         request: HttpServletRequest,
         response: HttpServletResponse,
@@ -16,7 +16,7 @@ class JWTAuthenticationFilter(private val jwtProvider: JWTProvider): OncePerRequ
     ) {
         request.getHeader("Authorization")
             ?.let { if (it.startsWith("Bearer")) it.substring(7) else null }
-            ?.let {
+            ?.also {
                 if (jwtProvider.validateToken(it))
                     SecurityContextHolder.getContext().authentication = jwtProvider.getAuthentication(it)
             }

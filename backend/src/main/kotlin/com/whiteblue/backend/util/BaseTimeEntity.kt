@@ -14,9 +14,11 @@ import java.time.LocalDateTime
 abstract class BaseTimeEntity {
     @NotNull
     @CreatedDate
-    @Column(updatable = false)
+    @Column(insertable = false, updatable = false)
     var createdAt: LocalDateTime = LocalDateTime.now()
 
+    @NotNull
     @LastModifiedDate
+    @Column(insertable = false)
     var modifiedAt: LocalDateTime = LocalDateTime.now()
 }

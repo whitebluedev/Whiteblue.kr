@@ -6,10 +6,10 @@ import jakarta.validation.constraints.NotBlank
 data class GetUserResponse(
     @field:NotBlank
     @field:Email
-    var username: String,
+    val username: String,
 
     @field:NotBlank
-    var name: String,
+    val name: String,
 
-    var image: String?
+    val image: String?
 )

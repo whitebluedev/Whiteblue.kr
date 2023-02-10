@@ -7,12 +7,10 @@ import org.springframework.security.web.access.AccessDeniedHandler
 import org.springframework.stereotype.Component
 
 @Component
-class JWTAccessDeniedHandler: AccessDeniedHandler {
+class JWTAccessDeniedHandler : AccessDeniedHandler {
     override fun handle(
         request: HttpServletRequest,
         response: HttpServletResponse,
         accessDeniedException: AccessDeniedException
-    ) {
-        response.sendError(HttpServletResponse.SC_FORBIDDEN)
-    }
+    ) = response.sendError(HttpServletResponse.SC_FORBIDDEN)
 }

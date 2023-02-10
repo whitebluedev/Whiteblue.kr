@@ -16,40 +16,22 @@ data class OAuthUser(
     private val authorities: List<GrantedAuthority>,
 
     private val attributes: Map<String, Any>?
-): UserDetails, OAuth2User {
-    override fun getName(): String {
-        return name
-    }
+) : UserDetails, OAuth2User {
+    override fun getUsername(): String = username
 
-    override fun getPassword(): String {
-        TODO("Not yet implemented")
-    }
+    override fun getName(): String = name
 
-    override fun getUsername(): String {
-        return username
-    }
+    override fun getAuthorities(): List<GrantedAuthority> = authorities
 
-    override fun isAccountNonExpired(): Boolean {
-        TODO("Not yet implemented")
-    }
+    override fun getAttributes(): Map<String, Any>? = attributes
 
-    override fun isAccountNonLocked(): Boolean {
-        TODO("Not yet implemented")
-    }
+    override fun getPassword(): String? = null
 
-    override fun isCredentialsNonExpired(): Boolean {
-        TODO("Not yet implemented")
-    }
+    override fun isEnabled(): Boolean = true
 
-    override fun isEnabled(): Boolean {
-        TODO("Not yet implemented")
-    }
+    override fun isAccountNonExpired(): Boolean = true
 
-    override fun getAttributes(): Map<String, Any>? {
-        return attributes
-    }
+    override fun isAccountNonLocked(): Boolean = true
 
-    override fun getAuthorities(): List<GrantedAuthority> {
-        return authorities
-    }
+    override fun isCredentialsNonExpired(): Boolean = true
 }

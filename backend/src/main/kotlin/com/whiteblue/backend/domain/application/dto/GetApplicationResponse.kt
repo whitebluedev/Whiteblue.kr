@@ -6,17 +6,17 @@ import jakarta.validation.constraints.NotNull
 
 data class GetApplicationResponse(
     @field:NotBlank
-    var name: String,
+    val name: String,
 
     @field:NotBlank
-    var phoneNumber: String,
+    val phoneNumber: String,
 
     @field:NotBlank
-    var major: String,
+    val major: String,
 
     @field:NotBlank
-    var introduction: String,
+    val introduction: String,
 
     @field:NotNull
-    var writer: User,
+    val writer: User,
 )

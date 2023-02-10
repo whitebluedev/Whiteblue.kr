@@ -10,17 +10,13 @@ import org.springframework.web.bind.annotation.*
 @RequestMapping("/application")
 @RestController
 class ApplicationController(private val applicationService: ApplicationService) {
-
     @GetMapping("")
-    fun getApplication(@AuthenticationPrincipal oAuthUser: OAuthUser): GetApplicationResponse? {
-        return applicationService.findByUser(oAuthUser)
-    }
+    fun getApplication(@AuthenticationPrincipal oAuthUser: OAuthUser): GetApplicationResponse? =
+        applicationService.findByUser(oAuthUser)
 
     @PostMapping("")
     fun saveApplication(
         @RequestBody @Validated saveApplicationRequest: SaveApplicationRequest,
         @AuthenticationPrincipal oAuthUser: OAuthUser
-    ) {
-        applicationService.save(saveApplicationRequest, oAuthUser)
-    }
+    ) = applicationService.save(saveApplicationRequest, oAuthUser)
 }

@@ -7,12 +7,10 @@ import org.springframework.security.web.AuthenticationEntryPoint
 import org.springframework.stereotype.Component
 
 @Component
-class JWTAuthenticationEntryPoint: AuthenticationEntryPoint {
+class JWTAuthenticationEntryPoint : AuthenticationEntryPoint {
     override fun commence(
         request: HttpServletRequest,
         response: HttpServletResponse,
         authException: AuthenticationException
-    ) {
-        response.sendError(HttpServletResponse.SC_UNAUTHORIZED, authException.localizedMessage)
-    }
+    ) = response.sendError(HttpServletResponse.SC_UNAUTHORIZED, authException.localizedMessage)
 }

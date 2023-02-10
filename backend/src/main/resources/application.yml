@@ -42,4 +42,4 @@ properties:
   secretKey: ${env.properties.secretKey}
   accessTokenExpire: 1
   refreshTokenExpire: 168
-  redirect-url: http://localhost:3000
+  authorizedUri: http://localhost:3000

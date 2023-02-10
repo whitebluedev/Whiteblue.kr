@@ -13,8 +13,7 @@ import java.util.*
 
 @Transactional
 @Service
-class OAuthUserService(private val userRepository: UserRepository):
-    DefaultOAuth2UserService() {
+class OAuthUserService(private val userRepository: UserRepository) : DefaultOAuth2UserService() {
     override fun loadUser(userRequest: OAuth2UserRequest): OAuth2User {
         val attributes: Map<String, Any> = super.loadUser(userRequest).attributes
         val account = attributes["kakao_account"] as Map<*, *>
@@ -24,11 +23,17 @@ class OAuthUserService(private val userRepository: UserRepository):
         val image = if (profile["is_default_image"] as Boolean) null else profile["profile_image_url"] as String
 
         val user = userRepository.findByUsername(username)
-            ?.let {
+            ?.also {
                 it.name = name
                 it.image = image
-                userRepository.save(it)
-            } ?: run { userRepository.save(User(username = username, name = name, image = image, role = UserRole.USER)) }
+            } ?: userRepository.save(
+            User(
+                username = username,
+                name = name,
+                image = image,
+                role = UserRole.USER
+            )
+        )
 
         return OAuthUser(
             id = user.id!!,

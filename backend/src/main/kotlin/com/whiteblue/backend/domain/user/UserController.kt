@@ -11,7 +11,5 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 class UserController(private val userService: UserService) {
     @GetMapping("")
-    fun getUser(@AuthenticationPrincipal oAuthUser: OAuthUser): GetUserResponse {
-        return userService.findByAuth(oAuthUser)
-    }
+    fun getUser(@AuthenticationPrincipal oAuthUser: OAuthUser): GetUserResponse = userService.findByAuth(oAuthUser)
 }

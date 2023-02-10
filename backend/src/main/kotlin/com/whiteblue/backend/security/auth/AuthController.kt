@@ -16,7 +16,5 @@ class AuthController(private val authService: AuthService) {
     fun refreshToken(
         request: HttpServletRequest,
         @RequestBody @Validated refreshTokenRequest: RefreshTokenRequest
-    ): RefreshTokenResponse? {
-        return authService.refresh(request, refreshTokenRequest.accessToken)
-    }
+    ): RefreshTokenResponse? = authService.refresh(request, refreshTokenRequest.accessToken)
 }

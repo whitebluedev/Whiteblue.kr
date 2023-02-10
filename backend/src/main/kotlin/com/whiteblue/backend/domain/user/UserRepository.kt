@@ -1,5 +1,6 @@
 package com.whiteblue.backend.domain.user
 
+import com.whiteblue.backend.security.oAuth.OAuthUser
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.data.jpa.repository.Modifying
 import org.springframework.data.jpa.repository.Query
@@ -7,11 +8,14 @@ import org.springframework.data.repository.query.Param
 import org.springframework.stereotype.Repository
 
 @Repository
-interface UserRepository: JpaRepository<User, Long> {
+interface UserRepository : JpaRepository<User, Long> {
     @Query("select distinct u from User u left join fetch u.board")
     override fun findAll(): List<User>
 
     fun findByUsername(username: String): User?
+
+    @Query("select u from User u where u.id = :#{#oAuthUser.id}")
+    fun findByOAuthUser(@Param("oAuthUser") oAuthUser: OAuthUser): User
 
     @Query("select u.refreshToken from User u where u.id = :id")
     fun getRefreshTokenById(@Param("id") id: Long): String?
