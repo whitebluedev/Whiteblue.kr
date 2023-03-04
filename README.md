@@ -18,11 +18,10 @@
 * **정상윤**
 
 ### Tech
-* **Kotlin**
 * **Spring Boot**
 * **Spring Data JPA**
 * **Spring Security(+ OAuth)**
 * **JSON Web Token**
 
 ### ERD
-![application](https://user-images.githubusercontent.com/82157140/216817678-35f8badc-a651-47a0-bcb2-d137f40c30c1.png)
+![application](https://user-images.githubusercontent.com/82157140/218146777-b46fd26b-eef7-4eb9-8efa-3ae6d10ef868.png)
