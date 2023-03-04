@@ -18,6 +18,7 @@
 * **정상윤**
 
 ### Tech
+* **Kotlin**
 * **Spring Boot**
 * **Spring Data JPA**
 * **Spring Security(+ OAuth)**
