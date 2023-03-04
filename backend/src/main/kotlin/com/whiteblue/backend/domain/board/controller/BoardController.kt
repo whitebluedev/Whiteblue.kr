@@ -1,4 +1,4 @@
-package com.whiteblue.backend.domain.board
+package com.whiteblue.backend.domain.board.controller
 
 import org.springframework.stereotype.Controller
 

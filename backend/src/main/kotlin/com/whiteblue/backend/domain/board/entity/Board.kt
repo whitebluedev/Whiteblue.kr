@@ -1,6 +1,6 @@
-package com.whiteblue.backend.domain.board
+package com.whiteblue.backend.domain.board.entity
 
-import com.whiteblue.backend.domain.user.User
+import com.whiteblue.backend.domain.user.entity.User
 import com.whiteblue.backend.util.BaseTimeEntity
 import jakarta.persistence.*
 import jakarta.validation.constraints.NotBlank

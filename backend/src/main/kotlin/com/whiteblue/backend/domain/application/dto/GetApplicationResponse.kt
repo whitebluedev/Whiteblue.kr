@@ -1,6 +1,6 @@
 package com.whiteblue.backend.domain.application.dto
 
-import com.whiteblue.backend.domain.user.User
+import com.whiteblue.backend.domain.user.entity.User
 import jakarta.validation.constraints.NotBlank
 import jakarta.validation.constraints.NotNull
 

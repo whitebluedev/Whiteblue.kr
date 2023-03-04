@@ -1,6 +1,7 @@
-package com.whiteblue.backend.domain.user
+package com.whiteblue.backend.domain.user.controller
 
 import com.whiteblue.backend.domain.user.dto.GetUserResponse
+import com.whiteblue.backend.domain.user.service.UserService
 import com.whiteblue.backend.security.oAuth.OAuthUser
 import org.springframework.security.core.annotation.AuthenticationPrincipal
 import org.springframework.web.bind.annotation.GetMapping

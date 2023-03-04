@@ -1,7 +1,8 @@
-package com.whiteblue.backend.domain.application
+package com.whiteblue.backend.domain.application.controller
 
 import com.whiteblue.backend.domain.application.dto.GetApplicationResponse
 import com.whiteblue.backend.domain.application.dto.SaveApplicationRequest
+import com.whiteblue.backend.domain.application.service.ApplicationService
 import com.whiteblue.backend.security.oAuth.OAuthUser
 import org.springframework.security.core.annotation.AuthenticationPrincipal
 import org.springframework.validation.annotation.Validated

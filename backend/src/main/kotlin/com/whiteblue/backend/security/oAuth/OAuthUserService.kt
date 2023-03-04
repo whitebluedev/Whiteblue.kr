@@ -1,8 +1,8 @@
 package com.whiteblue.backend.security.oAuth
 
-import com.whiteblue.backend.domain.user.User
-import com.whiteblue.backend.domain.user.UserRepository
 import com.whiteblue.backend.domain.user.UserRole
+import com.whiteblue.backend.domain.user.entity.User
+import com.whiteblue.backend.domain.user.repository.UserRepository
 import org.springframework.security.core.authority.SimpleGrantedAuthority
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService
 import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest

@@ -1,8 +1,10 @@
-package com.whiteblue.backend.domain.application
+package com.whiteblue.backend.domain.application.service
 
 import com.whiteblue.backend.domain.application.dto.GetApplicationResponse
 import com.whiteblue.backend.domain.application.dto.SaveApplicationRequest
-import com.whiteblue.backend.domain.user.UserRepository
+import com.whiteblue.backend.domain.application.entity.Application
+import com.whiteblue.backend.domain.application.repository.ApplicationRepository
+import com.whiteblue.backend.domain.user.repository.UserRepository
 import com.whiteblue.backend.security.oAuth.OAuthUser
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional

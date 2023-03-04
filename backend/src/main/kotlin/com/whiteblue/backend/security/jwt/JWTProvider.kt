@@ -1,7 +1,7 @@
 package com.whiteblue.backend.security.jwt
 
 import com.whiteblue.backend.config.ApplicationProperties
-import com.whiteblue.backend.domain.user.UserRepository
+import com.whiteblue.backend.domain.user.repository.UserRepository
 import com.whiteblue.backend.security.oAuth.OAuthUser
 import io.jsonwebtoken.*
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken

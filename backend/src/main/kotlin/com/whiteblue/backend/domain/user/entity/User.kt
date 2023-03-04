@@ -1,6 +1,7 @@
-package com.whiteblue.backend.domain.user
+package com.whiteblue.backend.domain.user.entity
 
-import com.whiteblue.backend.domain.board.Board
+import com.whiteblue.backend.domain.board.entity.Board
+import com.whiteblue.backend.domain.user.UserRole
 import jakarta.persistence.*
 import jakarta.validation.constraints.Email
 

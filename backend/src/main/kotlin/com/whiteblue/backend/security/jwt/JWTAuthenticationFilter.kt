@@ -15,10 +15,15 @@ class JWTAuthenticationFilter(private val jwtProvider: JWTProvider) : OncePerReq
         filterChain: FilterChain
     ) {
         request.getHeader("Authorization")
-            ?.let { if (it.startsWith("Bearer")) it.substring(7) else null }
+            ?.let {
+                if (it.startsWith("Bearer")) {
+                    it.substring(7)
+                } else null
+            }
             ?.also {
-                if (jwtProvider.validateToken(it))
+                if (jwtProvider.validateToken(it)) {
                     SecurityContextHolder.getContext().authentication = jwtProvider.getAuthentication(it)
+                }
             }
 
         filterChain.doFilter(request, response)

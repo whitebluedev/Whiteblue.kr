@@ -28,16 +28,15 @@ class OAuthAuthenticationSuccessHandler(
 
         val redirectUri = CookieUtil.getCookie(request, "redirect_uri")?.value
             ?.let {
-                if (isAuthorizedUri(it))
+                if (isAuthorizedUri(it)) {
                     UriComponentsBuilder.fromUriString(it)
                         .queryParam("accessToken", jwtProvider.createAccessToken(authentication))
                         .build()
                         .toUriString()
-                else null
+                } else null
             } ?: throw RuntimeException("적절하지 않은 Redirect URI입니다.")
 
         CookieUtil.addCookie(response, "refresh_token", jwtProvider.createRefreshToken(authentication))
-
         CookieUtil.deleteCookie(request, response, "redirect_uri")
         clearAuthenticationAttributes(request)
         redirectStrategy.sendRedirect(request, response, redirectUri as String?)

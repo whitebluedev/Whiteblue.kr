@@ -1,6 +1,5 @@
 package com.whiteblue.backend.security.oAuth
 
-import jakarta.validation.constraints.Email
 import org.springframework.security.core.GrantedAuthority
 import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.security.oauth2.core.user.OAuth2User
@@ -8,7 +7,6 @@ import org.springframework.security.oauth2.core.user.OAuth2User
 data class OAuthUser(
     val id: Long,
 
-    @field:Email
     private val username: String,
 
     private val name: String,

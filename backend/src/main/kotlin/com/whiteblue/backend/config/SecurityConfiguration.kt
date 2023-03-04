@@ -18,7 +18,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableMethodSecurity(securedEnabled = true)
 @EnableWebSecurity
 @Configuration
-class SecurityConfig(
+class SecurityConfiguration(
     private val oAuthUserService: OAuthUserService,
 
     private val oAuthAuthorizationRequestRepository: OAuthAuthorizationRequestRepository,
