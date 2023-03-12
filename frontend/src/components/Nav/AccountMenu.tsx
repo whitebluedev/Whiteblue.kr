@@ -70,7 +70,7 @@ export default function AccountMenu() {
               aria-haspopup="true"
               aria-expanded={open ? 'true' : undefined}
             >
-              <Avatar src="/image/ex.png" sx={{ width: 40, height: 40 }} />
+              <Avatar src="/broken-image.jpg" sx={{ width: 40, height: 40 }} />
             </IconButton>
 
             <Menu
@@ -144,7 +144,7 @@ export default function AccountMenu() {
         {!isLogin && (
           <>
             <Button
-              sx={{ color: '#8C8C8C' }}
+              sx={{ color: '#000' }}
               onClick={() => {
                 Router.push('/account/login')
               }}

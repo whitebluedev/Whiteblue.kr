@@ -55,7 +55,7 @@ export default function HideNav(props: Props) {
             <Typography
               sx={{
                 color: '#000',
-                ml: '20%',
+                ml: '10%',
                 fontSize: '1.5rem',
                 fontFamily: 'GmarketSans',
                 fontWeight: 100,
@@ -77,7 +77,7 @@ export default function HideNav(props: Props) {
             {/* User Menu */}
             <Typography
               sx={{
-                mr: '19%',
+                mr: '10%',
                 '@media (max-width: 600px)': {
                   mr: '0'
                 }

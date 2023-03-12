@@ -28,9 +28,9 @@ const Nav: FunctionComponent = () => {
         <AppBar
           sx={{
             p: 0.5,
-            bgcolor: '#fff',
+            bgcolor: 'transparent',
+            backdropFilter: 'saturate(100%) blur(10px)',
             boxShadow: 0,
-            borderBottom: '1px solid #F6F6F6',
             '@media (max-width: 600px)': {
               p: 0,
             }
@@ -41,7 +41,7 @@ const Nav: FunctionComponent = () => {
             <Typography
               sx={{
                 color: '#000',
-                ml: '20%',
+                ml: '10%',
                 fontSize: '1.5rem',
                 fontFamily: 'GmarketSans',
                 fontWeight: 100,
@@ -63,7 +63,7 @@ const Nav: FunctionComponent = () => {
             {/* User Menu */}
             <Typography
               sx={{
-                mr: '19%',
+                mr: '10%',
                 '@media (max-width: 600px)': {
                   mr: '0'
                 }

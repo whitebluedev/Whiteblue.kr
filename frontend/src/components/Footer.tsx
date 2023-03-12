@@ -25,7 +25,7 @@ const Body = styled(motion.div)`
 `
 
 const LogoWrapper = styled(motion.div)`
-  margin-left: 16%;
+  margin-left: 9%;
   text-align: left;
   color: #9d9d9d;
 
@@ -39,7 +39,7 @@ const CopyrightWrapper = styled(motion.div)`
 `
 
 const SNSWrapper = styled(motion.div)`
-  margin-right: 19%;
+  margin-right: 11%;
 
   & :hover {
     cursor: pointer;

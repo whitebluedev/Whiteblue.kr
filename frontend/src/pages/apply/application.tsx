@@ -32,7 +32,7 @@ import { motion, useAnimation } from 'framer-motion'
 const Body = styled(motion.div)`
   display: flex;
   flex-direction: column;
-  height: 480%;
+  height: 540%;
   width: 100%;
   align-items: center;
   background-color: #F6F6F6;
@@ -43,14 +43,14 @@ const Body = styled(motion.div)`
     font-size: 1rem;
     font-weight: 100;
     text-align: left;
-    padding: 3% 8% 3% 8%;
+    padding: 3% 8%;
   }
 
   & .content {
-    height: 30px;
+    height: 30px;ß
     font-size: 1rem;
     text-align: left;
-    padding: 2% 8%;
+    padding: 2% 8% 5% 8%;
     font-family: 'Pretendard';
   }
 
@@ -64,7 +64,7 @@ const Body = styled(motion.div)`
 
   & .detail {
     text-align: left;
-    padding: 1% 8%;
+    padding: 0% 8%;
     font-size: 0.8rem;
     font-weight: 100;
   }
@@ -227,7 +227,7 @@ const Application: NextPage = () => {
           <Paper
             elevation={3}
             sx={{
-              height: '70vh',
+              height: '110vh',
               mb: 5,
             }}
           >
@@ -248,41 +248,51 @@ const Application: NextPage = () => {
                 padding: '5% 8% 8% 8%'
               }}
             >
-              WHITEBLUE 동아리원 모집안내
+              WHITEBLUE 모집안내
             </Typography>
-            <Typography className='content'>
-              ~ 동아리 설명 ~
+            <Typography className='content' sx={{ fontSize: '1.2rem' }}>
+              WHITEBLUE는 2022년부터 활동해온 삼육대학교 SW중심대학사업단 소속 SW학술동아리입니다. <br/>
+              웹/모바일 개발 스터디와 프로젝트를 주로 활동하고 있습니다.
             </Typography>
+            <br/> <br/>
             {/* Contents */}
             <Typography className='contentTitle' sx={{ color: '#4378FF' }}>
               지원자격
             </Typography>
             <Typography className='content'>
-              삼육대학교 재학생
-            </Typography>
-
-            <Typography className='contentTitle' sx={{ color: '#4378FF' }}>
-              모집분야
-            </Typography>
+              삼육대학교 재학생 (휴학생 X) <br/>
+              전공/학년 무관 <br/>
+              웹/모바일 개발에 관심있으신 분
+            </Typography> <br/><br/>
+            <Typography className='contentTitle' sx={{ color: '#4378FF'}}>
+              모집분야 
+            </Typography> 
             <Typography className='content'>
-              WEB) 프론트엔드, 백엔드
+              프론트엔드, 백엔드
             </Typography>
-
             <Typography className='contentTitle' sx={{ color: '#4378FF' }}>
               모집과정
             </Typography>
             <Typography className='content'>
-              example context
-            </Typography>
+              서류 모집 : 3. 20 (월) 00:00 ~ 3. 26 (일) 11:59 <br/>
+              서류 검토 : 3. 27 (월) ~ 3.29 (수) <br/>
+              합격 안내 : 3. 30 (목) 오후 2시 개별 이메일 전송 <br/>
+              OT : 4.3 (목) 오후 2시 다니엘관 304호 
+            </Typography><br/><br/><br/>
 
             <Typography className='contentTitle' sx={{ color: '#4378FF' }}>
               활동개요
             </Typography>
             <Typography className='content'>
-              example context
+              4월 : 팀별 개발 스터디(프론트엔드, 백엔드) <br/>
+              5월 초 : 중간 발표 <br/>
+              5월 - 7월 : 팀별 프로젝트 <br/>
+              7월 말 : 최종 공개 발표 <br/>
+              8월 : 하계 방학 <br/>
+              9월 - 11월 : 교외/내 대회 준비 및 출전
             </Typography>
 
-            <Divider sx={{ my: 3 }} />
+            <Divider sx={{ mt: 15, mb: 5}} />
             <Typography className='detail'>
               ※ 지원 및 기타관련 문의 wayandway@kakao.com
             </Typography>

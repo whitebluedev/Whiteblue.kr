@@ -49,7 +49,7 @@ const LogIn: NextPage = () => {
     (event: FormEvent<HTMLFormElement>) => {
       event.preventDefault()
       axios
-        .post('http://localhost:8888/user', {
+        .post(' ', {
           userID: userID,
           userPWD: userPWD,
         })
@@ -187,7 +187,6 @@ const LogIn: NextPage = () => {
               '&:hover': {
                 backgroundColor: '#000'
               }  
-              
             }}
             onClick={() => {
               Router.push('http://localhost:8000/oauth2/authorization/kakao')
