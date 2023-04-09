@@ -1,23 +1,15 @@
 package com.whiteblue.backend.domain.user.service
 
-import com.whiteblue.backend.domain.user.dto.GetUserResponse
-import com.whiteblue.backend.domain.user.repository.UserRepository
-import com.whiteblue.backend.security.oAuth.OAuthUser
-import org.springframework.stereotype.Service
-import org.springframework.transaction.annotation.Transactional
+import com.whiteblue.backend.domain.user.dto.CreateUserRequest
+import com.whiteblue.backend.domain.user.dto.UpdateUserRequest
+import com.whiteblue.backend.domain.user.dto.UserResponse
 
-@Transactional
-@Service
-class UserService(private val userRepository: UserRepository) {
-    @Transactional(readOnly = true)
-    fun findByAuth(oAuthUser: OAuthUser): GetUserResponse {
-        return userRepository.findByOAuthUser(oAuthUser)
-            .run {
-                GetUserResponse(
-                    username = username,
-                    name = name,
-                    image = image
-                )
-            }
-    }
+interface UserService {
+    fun getUserById(id: Long): UserResponse?
+
+    fun createUser(createUserRequest: CreateUserRequest): UserResponse
+
+    fun updateUser(id: Long, updateUserRequest: UpdateUserRequest): UserResponse
+
+    fun deleteUser(id: Long)
 }

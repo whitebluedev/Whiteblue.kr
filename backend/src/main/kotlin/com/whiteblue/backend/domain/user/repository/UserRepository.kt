@@ -1,7 +1,7 @@
 package com.whiteblue.backend.domain.user.repository
 
-import com.whiteblue.backend.domain.user.entity.User
-import com.whiteblue.backend.security.oAuth.OAuthUser
+import com.whiteblue.backend.domain.user.model.User
+import com.whiteblue.backend.global.oAuth.OAuthUser
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.data.jpa.repository.Modifying
 import org.springframework.data.jpa.repository.Query

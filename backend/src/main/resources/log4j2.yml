@@ -37,7 +37,7 @@ Configuration:
             exceeds: 140
   Loggers:
     Root:
-      level: info
+      level: debug
       AppenderRef:
         - ref: Console_Appender
         - ref: RollingFile_Appender

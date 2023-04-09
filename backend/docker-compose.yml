@@ -1,0 +1,24 @@
+version: '3'
+services:
+  database:
+    container_name: mysql-container
+    image: mysql
+    environment:
+      MYSQL_DATABASE: whiteblue
+      MYSQL_ROOT_HOST: "%"
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - ./db/data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+  app:
+    container_name: whiteblue
+    build: .
+    depends_on:
+      - database
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-container:3306/whiteblue
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
+    ports:
+      - "80:8000"
